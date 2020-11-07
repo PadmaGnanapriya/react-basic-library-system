@@ -1,6 +1,8 @@
 @import "common";
 
-.author-item{
+.book-component{
+  padding-left: 0;
+  margin-left: 0;
   label{
     color: $text-color;
     font-size: $list-data-font-size;
@@ -18,12 +20,12 @@
   .icon-trash-2{
     color: $red-color;
   }
-  &:hover{
+
+  &:hover {
     background-color: $hover-color;
-    .author-controls{
-      i{
-        visibility:visible ;
-      }
+
+    i {
+      visibility: visible;
     }
   }
 }

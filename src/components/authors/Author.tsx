@@ -27,7 +27,7 @@ const Author:React.FC<AuthorProps>=(props)=>{
 
     return(
         <Container fluid>
-            <Row className='author-item pr-0 mr-4 pt-2 ml-1'>
+            <Row className='author-item pt-1 pb-1 pl-0 pr-4 text-left'>
                 <Col xs={9} className="pl-0">
                    <label className='mb-2 float-left text-left'>{num}.{props.author.name}</label>
                 </Col>

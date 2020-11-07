@@ -36,7 +36,7 @@ const UpdateAuthor:React.FC<UpdateAuthorProps> = (props)=>{
 
     return(
         <React.Fragment>
-            <div className="update-author">
+            <div className="update-author mt-2 mb-5 pb-2 pt-5">
                 <Form.Row>
                     <Col className="text-left pl-1 mb-3">
                         <span>Update Author</span>
@@ -48,7 +48,7 @@ const UpdateAuthor:React.FC<UpdateAuthorProps> = (props)=>{
 
                 <Form noValidate validated={validated} className="pl-5">
                     <Form.Row>
-                        <Form.Group controlId="authorSelectID"  className="form-bootstrap-area">
+                        <Form.Group controlId="authorSelectID"  className="form-group-dev">
                             <Form.Label className="text-left label-text">Name of Author</Form.Label>
                             <Form.Control required type="text" className="form-input"
                                           placeholder="" value={authorName ? authorName : ''}

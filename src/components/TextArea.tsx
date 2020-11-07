@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {Col, Row} from "react-bootstrap";
 import {IAuthor} from "./types/LibraryTypes";
 import Authors from "./Authors";
+import Books from "./Books";
 
 const TextArea:React.FC =()=>{
     const sampleAuthors = [
@@ -45,17 +46,14 @@ const TextArea:React.FC =()=>{
         setAuthors(allAuthors);
     };
 
-    console.log(authors);
-
-
 
     return(
         <React.Fragment>
             <Row>
-                <Col>
-                    Books
+                <Col className="ml-4 mr-5 p-0">
+                    <Books  authors={authors} />
                 </Col>
-                <Col>
+                <Col className="ml-4 mr-5 p-0">
                     <Authors authors={authors} onAuthorCreated={handleOnAuthorCreated}
                               onAuthorDeleted={handleAuthorDeleted}
                               onAuthorUpdated={handleOnAuthorUpdated}/>

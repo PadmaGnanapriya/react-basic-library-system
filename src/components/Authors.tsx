@@ -23,7 +23,7 @@ const Authors:React.FC<AuthorProps> =(props) =>{
 
 
     return(
-        <React.Fragment>
+        <div className="authors-dev">
             <p className="sub-title">Authors list</p>
             {
                 (authors.length>0)?
@@ -46,7 +46,7 @@ const Authors:React.FC<AuthorProps> =(props) =>{
                 <CreateAuthor onAuthorCreated={props.onAuthorCreated} setIsVisible={setIsVisible}/>
             }
 
-        </React.Fragment>
+        </div>
     );
 }
 export default Authors;
