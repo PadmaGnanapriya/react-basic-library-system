@@ -17,7 +17,7 @@ const Welcome: React.FC = () => {
                     </Col>
                     <Col xs={12} className="pl-0 pr-0">
                         <Image src={bannerImage} className="banner-image"/>
-                        <figcaption className="pr-4">
+                        <figcaption className="pr-4 float-right">
                             <span>Photo by <a href="https://unsplash.com/@annahunko?utm_source=unsplash&amp;
                             utm_medium=referral&amp;utm_content=creditCopyText">Anna Hunko</a> on
                             <a href="https://unsplash.com/s/photos/library?utm_source=unsplash&amp;
