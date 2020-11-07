@@ -45,6 +45,7 @@ const TextArea:React.FC =()=>{
         setAuthors(allAuthors);
     };
 
+    console.log(authors);
 
 
 

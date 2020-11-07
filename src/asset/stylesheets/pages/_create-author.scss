@@ -1,0 +1,26 @@
+@import "common";
+
+.label-text{
+  font-size: small;
+  float: left;
+}
+
+.create-author{
+  width: 73%;
+  .form-input{
+    font-size: 1em;
+    border: 0.13em solid $boarder-line-color;
+    height: 1.9em;
+    width: 100%;
+  }
+
+  span{
+    color: $green-color;
+    font-size: 1.2em;
+    font-weight: 500;
+    border-bottom: 3px solid $green-color;
+  }
+  .icon-x-circle{
+    font-size: 1.3em;
+  }
+}
