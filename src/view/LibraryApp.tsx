@@ -13,14 +13,14 @@ const LibraryApp:React.FC = () => {
 
             <Router>
                 <div>
-                    <Navbar bg="light" expand="lg">
-                        <Navbar.Brand href="#home">My Library</Navbar.Brand>
+                    <Navbar expand="lg" className="nav-bar-div">
+                        <Navbar.Brand>My Library</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="mr-auto">
-                                <Link to="/">Home</Link>
-                                <Link to="/library">Library</Link>
-                                <Link to="/about">About</Link>
+                                <Link to="/" className="router-link-created">Home</Link>
+                                <Link to="/library" className="router-link-created">Library</Link>
+                                <Link to="/about" className="router-link-created">About</Link>
                             </Nav>
                         </Navbar.Collapse>
                     </Navbar>
