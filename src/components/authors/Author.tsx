@@ -29,8 +29,7 @@ const Author:React.FC<AuthorProps>=(props)=>{
         <Container fluid>
             <Row className='author-item pr-0 mr-4 pt-2 ml-1'>
                 <Col xs={9} className="pl-0">
-                    {!isEditClick && <label className='mb-2'>{num}.{props.author.name}</label>}
-                    {isEditClick && <input className='author-edit' type='text' placeholder={author.name} onChange={event => setEditAuthorName(event.target.value)}/>}
+                   <label className='mb-2 float-left text-left'>{num}.{props.author.name}</label>
                 </Col>
                 <Col xs={3} className='text-right author-controls'>
                     {!isEditClick && <i className='feather icon-edit mr-3' onClick={()=>handleEditClick()}/>}
