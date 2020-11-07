@@ -1,0 +1,11 @@
+@import "common";
+
+.add-author{
+  font-weight: 550;
+  font-size: .95em;
+  cursor: pointer;
+  i{
+    color:$plus-color;
+    font-size: 1.5em;
+  }
+}

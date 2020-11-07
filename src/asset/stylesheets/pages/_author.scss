@@ -1,0 +1,31 @@
+@import "common";
+
+.author-item{
+  font-size: 1.45em;
+  font-weight: 400;
+  color: $text-color;
+  .icon-edit{
+    color: $yellow-color;
+  }
+  .icon-trash-2{
+    color: $red-color;
+  }
+  &:hover{
+    background-color: $hover-color;
+    .author-controls{
+      i{
+        visibility:visible ;
+      }
+    }
+  }
+  .author-controls{
+    i{
+      cursor: pointer;
+      visibility: hidden;
+    }
+  }
+  .author-edit{
+    height: 1.5em;
+    margin-bottom: 10px;
+  }
+}
