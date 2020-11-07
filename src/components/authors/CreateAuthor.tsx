@@ -4,6 +4,7 @@ import {Col, Button, Form} from "react-bootstrap"
 
 type CreateAuthorProps={
     onAuthorCreated:(newAuthor:IAuthor)=>void;
+    setIsVisible:(val:boolean)=>void;
 }
 
 const CreateAuthor:React.FC<CreateAuthorProps> = (props)=>{
@@ -37,7 +38,7 @@ const CreateAuthor:React.FC<CreateAuthorProps> = (props)=>{
                         <span>Create Author</span>
                     </Col>
                     <Col  className="text-right">
-                        <i className='feather icon-x-circle text-dark text-right' />
+                        <i className='feather icon-x-circle text-dark text-right' onClick={()=>props.setIsVisible(false)}/>
                     </Col>
                 </Form.Row>
 

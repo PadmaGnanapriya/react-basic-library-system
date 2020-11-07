@@ -3,6 +3,7 @@ import {IAuthor} from "./types/LibraryTypes";
 import CreateAuthor from "./authors/CreateAuthor";
 import UpdateAuthor from "./authors/UpdateAuthor";
 import AuthorsList from "./authors/AuthorList";
+import AddAuthor from "./authors/AddAuthor";
 
 type AuthorProps={
     authors:IAuthor[];
@@ -14,6 +15,7 @@ const Authors:React.FC<AuthorProps> =(props) =>{
     const {authors}=props;
     const [isUpdatable, setIsUpdatable]=useState<boolean>(false);//Should be false
     const [updatableIndex, setUpdatableIndex]=useState<number>(0);
+    const [isVisible, setIsVisible] =useState(false);
 
     const disableUpdate= (val:boolean)=>{
         setIsUpdatable(val);
@@ -22,7 +24,7 @@ const Authors:React.FC<AuthorProps> =(props) =>{
 
     return(
         <React.Fragment>
-            <p>Authors list</p>
+            <p className="sub-title">Authors list</p>
             {
                 (authors.length>0)?
                     <AuthorsList authors={authors} onAuthorDelete={props.onAuthorDeleted}
@@ -30,11 +32,20 @@ const Authors:React.FC<AuthorProps> =(props) =>{
                     <p>No authors</p>
             }
             {
+                !isVisible &&
+                <AddAuthor setIsVisible={setIsVisible}/>
+            }
+
+            {
                 isUpdatable &&
                 <UpdateAuthor author={authors[updatableIndex]} onAuthorUpdated={props.onAuthorUpdated}
                           keyIndex={updatableIndex} isUpdatable={disableUpdate}/>
             }
-            <CreateAuthor onAuthorCreated={props.onAuthorCreated}/>
+            {
+                isVisible &&
+                <CreateAuthor onAuthorCreated={props.onAuthorCreated} setIsVisible={setIsVisible}/>
+            }
+
         </React.Fragment>
     );
 }
