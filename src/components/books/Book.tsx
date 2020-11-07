@@ -19,7 +19,7 @@ const Book: React.FC<bookProps> = (props) => {
     return(
             <React.Fragment>
                 <Container fluid>
-                    <Row className="book-component pt-1 pb-1 pl-1 pr-4 text-left">
+                    <Row className="book-component pt-1 pb-1 pl-0 pr-4 text-left">
                         <Col sm md xs lg="10" className="text-left p-0" >
                             <label className='mb-2 float-left text-left'>{num}.{book.title}</label>
                         </Col>

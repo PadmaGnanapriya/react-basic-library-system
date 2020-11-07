@@ -32,7 +32,7 @@ const CreateAuthor:React.FC<CreateAuthorProps> = (props)=>{
 
     return(
         <React.Fragment>
-            <div className="create-author">
+            <div className="create-author mt-2 mb-5 pb-2 pt-5">
                 <Form.Row>
                     <Col className="text-left pl-1 mb-3">
                         <span>Create Author</span>
@@ -44,7 +44,7 @@ const CreateAuthor:React.FC<CreateAuthorProps> = (props)=>{
 
                 <Form noValidate validated={validated} className="pl-5">
                     <Form.Row>
-                        <Form.Group controlId="authorSelectID"  className="form-bootstrap-area">
+                        <Form.Group controlId="authorSelectID"  className="form-group-dev">
                             <Form.Label className="text-left label-text">Name of Author</Form.Label>
                             <Form.Control required type="text" className="form-input"
                                           onChange={(e:React.ChangeEvent<HTMLInputElement>)=> setAuthor(e.target.value)}/>

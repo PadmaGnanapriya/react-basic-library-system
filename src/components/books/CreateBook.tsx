@@ -49,7 +49,7 @@ const CreateBook:React.FC<CreateBookProps> =(props) =>{
         setSelectedAuthor(null);
     }
 
-    const [bodrcol, setBodrcol]=useState('#989898');
+    const [borderColor, setBorderColor]=useState('#989898');
     const [validated, setValidated] = useState(false);
     const handleSubmit = (event:FormEvent) => {
         const form = event.currentTarget;
@@ -59,21 +59,21 @@ const CreateBook:React.FC<CreateBookProps> =(props) =>{
             event.stopPropagation();
         }else if(title!== null && isbn !== null && title !== '' && isbn !== '' && author !== null && author !== ''){
                addBook();
-               setBodrcol('#989898');
+               setBorderColor('#989898');
                setValidated(false);
         }
         else {
             setValidated(true);
         }
         if(!validated){
-            setBodrcol('#989898');
+            setBorderColor('#989898');
         }
 
         if(!validated){
             if(selectedAuthor===null){
-                setBodrcol('#dc3545');
+                setBorderColor('#dc3545');
             }else {
-                setBodrcol('#28a745');
+                setBorderColor('#28a745');
             }
         }
     };
@@ -82,7 +82,7 @@ const CreateBook:React.FC<CreateBookProps> =(props) =>{
         setSelectedAuthor(selectedOption);
         const index = parseInt((selectedOption as ReactSelectOption).value);
         const author: IAuthor | null = authors ? authors[index]: null
-        if(validated){setBodrcol('#28a745');}
+        if(validated){setBorderColor('#28a745');}
         // @ts-ignore
         setAuthor(author);
     };
@@ -91,12 +91,12 @@ const CreateBook:React.FC<CreateBookProps> =(props) =>{
         control: (provided: any, state: any) => ({
             ...provided,
             borderRadius: 0,
-            border: '2px solid '+bodrcol,
+            border: '1px solid '+borderColor,
         })
     }
 
     return(
-        <div className="create-book">
+        <div className="create-book mt-2 mb-5 pb-2 pt-5">
         <Form.Row>
             <Col className="text-left pl-1 mb-3">
                 <span>Create Book</span>
@@ -108,24 +108,24 @@ const CreateBook:React.FC<CreateBookProps> =(props) =>{
         <Form noValidate validated={validated} className="pl-5">
 
             <Form.Row>
-                <Form.Group controlId="titleSelectID"  className="form-bootstrap-area">
-                    <Form.Label>Title of Book</Form.Label>
+                <Form.Group controlId="titleSelectID"  className="form-group-dev">
+                    <Form.Label className="text-left label-text">Title of Book</Form.Label>
                     <Form.Control required type="text" className="form-input"
                         onChange={(e:React.ChangeEvent<HTMLInputElement>)=> setTitle(e.target.value)}/>
                     <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                 </Form.Group>
             </Form.Row>
             <Form.Row>
-                <Form.Group controlId="isbnSelectID"   className="form-bootstrap-area">
-                    <Form.Label>ISBN</Form.Label>
+                <Form.Group controlId="isbnSelectID"   className="form-group-dev">
+                    <Form.Label className="text-left label-text">ISBN</Form.Label>
                     <Form.Control className="form-input"  required type="text"
                       onChange={(e:React.ChangeEvent<HTMLInputElement>)=> setISBN(e.target.value)}/>
                     <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                 </Form.Group>
             </Form.Row>
             <Form.Row>
-                <Form.Group controlId="authorSelectID"  className="form-bootstrap-area">
-                    <Form.Label>Author</Form.Label>
+                <Form.Group controlId="authorSelectID"  className="form-group-dev">
+                    <Form.Label className="text-left label-text">Author</Form.Label>
                     <Select
                         styles={customSelectStyles}
                         value={selectedAuthor}

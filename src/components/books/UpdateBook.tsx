@@ -65,7 +65,7 @@ const UpdateBook:React.FC<UpdateBookProps> =(props) =>{
     }
 
     return(
-        <div className="create-book">
+        <div className="update-book mt-2 mb-5 pb-2 pt-5">
             <Form.Row>
                 <Col className="text-left pl-1 mb-3">
                     <span>Update Book</span>
@@ -77,24 +77,24 @@ const UpdateBook:React.FC<UpdateBookProps> =(props) =>{
             <Form noValidate validated={validated} className="pl-5">
 
                 <Form.Row>
-                    <Form.Group controlId="titleSelectID"  className="form-bootstrap-area">
-                        <Form.Label>Title of Book</Form.Label>
+                    <Form.Group controlId="titleSelectID"  className="form-group-dev">
+                        <Form.Label className="text-left label-text">Title of Book</Form.Label>
                         <Form.Control required type="text" className="form-input" placeholder="" value={title ? title : ''}
                                       onChange={(e:React.ChangeEvent<HTMLInputElement>)=> setTitle(e.target.value)}/>
                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                     </Form.Group>
                 </Form.Row>
                 <Form.Row>
-                    <Form.Group controlId="isbnSelectID"   className="form-bootstrap-area">
-                        <Form.Label>ISBN</Form.Label>
+                    <Form.Group controlId="isbnSelectID"   className="form-group-dev">
+                        <Form.Label className="text-left label-text">ISBN</Form.Label>
                         <Form.Control className="form-input"  required type="text" placeholder="" value={isbn ? isbn : ''}
                                       onChange={(e:React.ChangeEvent<HTMLInputElement>)=> setISBN(e.target.value)}/>
                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                     </Form.Group>
                 </Form.Row>
                 <Form.Row>
-                    <Form.Group controlId="authorSelectID"  className="form-bootstrap-area">
-                        <Form.Label>Author</Form.Label>
+                    <Form.Group controlId="authorSelectID"  className="form-group-dev">
+                        <Form.Label className="text-left label-text">Author</Form.Label>
                         <Select
                             styles={customSelectStyles}
                             value={selectedAuthor}
@@ -104,7 +104,7 @@ const UpdateBook:React.FC<UpdateBookProps> =(props) =>{
                     </Form.Group>
                 </Form.Row>
                 <Button onClick={event => handleUpdate(event)}size='sm' variant='primary'
-                        className='float-right create-button'>
+                        className='float-right update-button'>
                     Update
                 </Button>
             </Form>

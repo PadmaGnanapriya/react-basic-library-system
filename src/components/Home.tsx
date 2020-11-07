@@ -1,6 +1,7 @@
 import React from "react";
 
 const Home:React.FC =() =>{
+    document.title = "My Library | Home";
     return(
         <React.Fragment>
             <h1>Home</h1>

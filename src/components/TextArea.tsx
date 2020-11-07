@@ -50,10 +50,10 @@ const TextArea:React.FC =()=>{
     return(
         <React.Fragment>
             <Row>
-                <Col>
+                <Col className="ml-4 mr-5 p-0">
                     <Books  authors={authors} />
                 </Col>
-                <Col>
+                <Col className="ml-4 mr-5 p-0">
                     <Authors authors={authors} onAuthorCreated={handleOnAuthorCreated}
                               onAuthorDeleted={handleAuthorDeleted}
                               onAuthorUpdated={handleOnAuthorUpdated}/>

@@ -6,6 +6,10 @@
 .router-link-created{
   margin-left: 10px;
   font-weight: 700;
-  color: #fff;
+  color: lemonchiffon;
   font-size: large;
+
+  &:hover{
+    color: #fff;
+  }
 }
