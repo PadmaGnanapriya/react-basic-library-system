@@ -12,7 +12,7 @@ type UpdateAuthorProps={
 const UpdateAuthor:React.FC<UpdateAuthorProps> = (props)=>{
     const {keyIndex,author}=props;
     const [validated, setValidated] = useState(false);
-    const [authorName, setAuthorName] =useState<string|null>(author.name);
+    const [authorName, setAuthorName] =useState<string|null>(props.author.name);
 
 
     const handleSubmit = (event:FormEvent) => {
