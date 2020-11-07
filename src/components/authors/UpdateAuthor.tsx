@@ -2,13 +2,17 @@ import React, {FormEvent, useState} from "react";
 import {IAuthor} from "../types/LibraryTypes";
 import {Col, Button, Form} from "react-bootstrap"
 
-type CreateAuthorProps={
-    onAuthorCreated:(newAuthor:IAuthor)=>void;
+type UpdateAuthorProps={
+    onAuthorUpdated:(newAuthor:IAuthor, index:number)=>void;
+    keyIndex:number;
+    isUpdatable:(val:boolean)=>void;
+    author:IAuthor;
 }
 
-const CreateAuthor:React.FC<CreateAuthorProps> = (props)=>{
+const UpdateAuthor:React.FC<UpdateAuthorProps> = (props)=>{
+    const {keyIndex,author}=props;
     const [validated, setValidated] = useState(false);
-    const [author, setAuthor] =useState<string|null>(null);
+    const [authorName, setAuthorName] =useState<string|null>(author.name);
 
 
     const handleSubmit = (event:FormEvent) => {
@@ -17,13 +21,14 @@ const CreateAuthor:React.FC<CreateAuthorProps> = (props)=>{
         if (form.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
-        }else if(author !== null && author !== ''){
-            props.onAuthorCreated({name:author});
+        }else if(authorName !== null && authorName !== ''){
+            props.onAuthorUpdated({name: authorName},keyIndex);
             setValidated(false);
             Array.from(document.querySelectorAll("input")).forEach(
                 input => (input.value = "")
             );
-            setAuthor(null);
+            props.isUpdatable(false);
+            setAuthorName(null);
         }else {
             setValidated(true);
         }
@@ -31,13 +36,13 @@ const CreateAuthor:React.FC<CreateAuthorProps> = (props)=>{
 
     return(
         <React.Fragment>
-            <div className="create-author">
+            <div className="update-author">
                 <Form.Row>
                     <Col className="text-left pl-1 mb-3">
-                        <span>Create Author</span>
+                        <span>Update Author</span>
                     </Col>
                     <Col  className="text-right">
-                        <i className='feather icon-x-circle text-dark text-right' />
+                        <i className='feather icon-x-circle text-dark text-right' onClick={()=> props.isUpdatable(false)}/>
                     </Col>
                 </Form.Row>
 
@@ -46,17 +51,18 @@ const CreateAuthor:React.FC<CreateAuthorProps> = (props)=>{
                         <Form.Group controlId="authorSelectID"  className="form-bootstrap-area">
                             <Form.Label className="text-left label-text">Name of Author</Form.Label>
                             <Form.Control required type="text" className="form-input"
-                                          onChange={(e:React.ChangeEvent<HTMLInputElement>)=> setAuthor(e.target.value)}/>
+                                          placeholder="" value={authorName ? authorName : ''}
+                                          onChange={(e:React.ChangeEvent<HTMLInputElement>)=> setAuthorName(e.target.value)}/>
                             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                         </Form.Group>
                     </Form.Row>
                     <Button onClick={event => handleSubmit(event)}size='sm' variant='primary'
-                            className='float-right create-button'>
-                        Create
+                            className='float-right update-button'>
+                        Update
                     </Button>
                 </Form>
             </div>
         </React.Fragment>
     );
 }
-export default CreateAuthor;
+export default UpdateAuthor;
