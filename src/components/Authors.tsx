@@ -1,5 +1,5 @@
 import React from "react";
-import db from '../db/db'
+
 
 const Authors:React.FC =() =>{
 
