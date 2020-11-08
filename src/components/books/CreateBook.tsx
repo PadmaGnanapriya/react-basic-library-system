@@ -88,11 +88,22 @@ const CreateBook:React.FC<CreateBookProps> =(props) =>{
     };
 
     const customSelectStyles = {
-        control: (provided: any, state: any) => ({
+        control: (provided:any, state:any) => ({
             ...provided,
-            borderRadius: 0,
-            border: '1px solid '+borderColor,
-        })
+            borderRadius:0,
+            border: '2px solid '+borderColor,
+            minHeight: '31px',
+            height: '31px',
+            boxShadow: state.isFocused ? null : null,
+        }),
+        input: (provided:any, state:any) => ({
+            ...provided,
+            margin: '0px',
+        }),
+        indicatorsContainer: (provided:any, state:any) => ({
+            ...provided,
+            height: '28px',
+        }),
     }
 
     return(
@@ -124,8 +135,8 @@ const CreateBook:React.FC<CreateBookProps> =(props) =>{
                 </Form.Group>
             </Form.Row>
             <Form.Row>
+                <Form.Label className="text-left author-label">Author</Form.Label>
                 <Form.Group controlId="authorSelectID"  className="form-group-dev">
-                    <Form.Label className="text-left label-text">Author</Form.Label>
                     <Select
                         styles={customSelectStyles}
                         value={selectedAuthor}

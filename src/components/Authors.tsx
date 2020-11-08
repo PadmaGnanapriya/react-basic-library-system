@@ -4,6 +4,7 @@ import CreateAuthor from "./authors/CreateAuthor";
 import UpdateAuthor from "./authors/UpdateAuthor";
 import AuthorsList from "./authors/AuthorList";
 import AddAuthor from "./authors/AddAuthor";
+import {Container} from "react-bootstrap";
 
 type AuthorProps={
     authors:IAuthor[];
@@ -23,30 +24,29 @@ const Authors:React.FC<AuthorProps> =(props) =>{
 
 
     return(
-        <div className="authors-dev">
-            <p className="sub-title">Authors list</p>
-            {
-                (authors.length>0)?
-                    <AuthorsList authors={authors} onAuthorDelete={props.onAuthorDeleted}
-                                     setIsUpdatable={setIsUpdatable} setUpdatableIndex={setUpdatableIndex}/>:
-                    <p>No authors</p>
-            }
-            {
-                !isVisible &&
-                <AddAuthor setIsVisible={setIsVisible}/>
-            }
+        <React.Fragment>
+            <Container className="authors-dev m-1 p-0 mt-0 pt-0 pl-1 pr-3" fluid>
+                <span className="text-left ml-1 pb-1 mb-4 authors-title">Authors</span>
+                {
+                    (authors.length>0)?
+                        <AuthorsList authors={authors} onAuthorDelete={props.onAuthorDeleted}
+                            setIsUpdatable={setIsUpdatable} setUpdatableIndex={setUpdatableIndex}/>:
+                        <label className='font-italic'>No Authors listed here</label>
+                }
+                {
+                    !isVisible && <AddAuthor setIsVisible={setIsVisible}/>
+                }
+                {
+                    isUpdatable &&
+                    <UpdateAuthor author={authors[updatableIndex]} onAuthorUpdated={props.onAuthorUpdated}
+                              keyIndex={updatableIndex} isUpdatable={disableUpdate}/>
+                }
+                {
+                    isVisible && <CreateAuthor onAuthorCreated={props.onAuthorCreated} setIsVisible={setIsVisible}/>
+                }
 
-            {
-                isUpdatable &&
-                <UpdateAuthor author={authors[updatableIndex]} onAuthorUpdated={props.onAuthorUpdated}
-                          keyIndex={updatableIndex} isUpdatable={disableUpdate}/>
-            }
-            {
-                isVisible &&
-                <CreateAuthor onAuthorCreated={props.onAuthorCreated} setIsVisible={setIsVisible}/>
-            }
-
-        </div>
+            </Container>
+        </React.Fragment>
     );
 }
 export default Authors;

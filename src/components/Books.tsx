@@ -52,11 +52,11 @@ const Books: React.FC<BooksProps> = (props) => {
     return(
         <React.Fragment>
             <Container className="books m-1 p-0 mt-0 pt-0 pl-1 pr-3" fluid>
-                <span className="text-left ml-1 pb-1 mb-3 books-title">Books</span>
+                <span className="text-left ml-1 pb-1 mb-4 books-title">Books</span>
                 {(books.length === 0) && <label className='font-italic'>No Books listed here</label>}
                 {(books.length !== 0) &&<BookList books={books} handleDelete={handleDelete} handleEdit={handleEdit}/>}
                 {isEditable && <UpdateBook book={books[updateBookIndex]}  changeVisibility={hideUpdateForm}
-                                           onBookUpdate={handleBookUpdate} authors={authors} keyIndex={updateBookIndex}/>}
+                                        onBookUpdate={handleBookUpdate} authors={authors} keyIndex={updateBookIndex}/>}
                 {!isVisible && <AddBook changeVisibility={setIsVisible}/>}
                 {isVisible && <CreateBook onBookAdd={handleOnAdd} changeVisibility={setIsVisible} authors={authors}/>}
             </Container>
