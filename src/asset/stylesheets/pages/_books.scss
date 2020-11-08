@@ -1,0 +1,16 @@
+@import "common";
+
+.books{
+  min-height: 900px;
+  padding: 0;
+  margin: 0;
+}
+
+.books-title{
+  font-weight: 500;
+  font-size: 2.05em;
+  border-bottom:2px solid $text-color;
+  float:left;
+  width: 100%;
+  color: $text-color;
+}

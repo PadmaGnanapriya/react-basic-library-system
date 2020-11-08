@@ -1,0 +1,38 @@
+$sub-title-color:#2a3137;
+$sub-title-underline:#2b2f32;
+$yellow-color: #e59526;
+$red-color: #a22835;
+$green-color: #1B5F52;
+$blue-color:#02569c;
+$hover-color:#f5f5f5;
+$text-color:#2f343f;
+$plus-color:#184aad;
+$x-circle-color:#1c1c1c;
+$boarder-line-color:#959595;
+
+$green-title-font-size:1.3em;
+$green-title-font-weight:500;
+$icon-font-size:1.3em;
+$list-data-font-size:1.25em;
+$box-title-text-font-size:0.7em;
+
+
+.create-button{
+  margin-right: 0.3em;
+  float: right;
+  background-color: $blue-color;
+  padding: 0.1em;
+  border-radius: 6px;
+  min-width: 90px;
+  margin-top: 8px;
+}
+
+.update-button{
+  margin-right: 0.3em;
+  float: right;
+  background-color: $plus-color;
+  padding: 0.1em;
+  border-radius: 6px;
+  min-width: 90px;
+  margin-top: 8px;
+}

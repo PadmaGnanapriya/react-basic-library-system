@@ -1,0 +1,18 @@
+@import "common";
+
+.add-book{
+  i{
+    color: $plus-color;
+    font-size: 1.5em;
+    font-width: 400;
+    cursor: pointer;
+  }
+  span{
+    font-size: 1.0em;
+    margin-bottom: 0.5em;
+    margin-left: 0.5em;
+    color: $text-color;
+    font-weight: 500;
+    cursor: pointer;
+  }
+}
