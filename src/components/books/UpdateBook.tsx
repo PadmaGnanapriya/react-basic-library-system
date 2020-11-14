@@ -18,7 +18,7 @@ const UpdateBook:React.FC<UpdateBookProps> = (props) => {
     const [selectedAuthor, setSelectedAuthor] = useState<ValueType<ReactSelectOption>>({value: '1', label:book.author.name});
     const [title, setTitle]=useState<string>(book.title);
     const [isbn, setISBN]=useState<string>(book.isbn);
-    const [author, setAuthor]=useState<string>(book.author.name);
+    const [author, setAuthor]=useState<IAuthor>(book.author);
 
     useEffect(() => {
         const options: ReactSelectOption[] = authors ? authors.map((author: IAuthor, index: number) => {
@@ -29,16 +29,11 @@ const UpdateBook:React.FC<UpdateBookProps> = (props) => {
         setAuthorOptions(options)
     }, [authors]);
 
-
     const [validated, setValidated] = useState(false);
     const handleUpdate = (event:FormEvent) => {
-        const form = event.currentTarget;
-        // @ts-ignore
-        if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-        }else if(title!== null && isbn !== null && title !== '' && isbn !== ''){
-            // @ts-ignore
+        event.preventDefault();
+        event.stopPropagation();
+        if(title!== null && isbn !== null && title !== '' && isbn !== ''){
             props.onBookUpdate({title:title, isbn:isbn, author:author},keyIndex);
             setValidated(false);
         }else {
@@ -49,8 +44,7 @@ const UpdateBook:React.FC<UpdateBookProps> = (props) => {
     const handleOnBookAuthorChange = (selectedOption: ValueType<ReactSelectOption>) => {
         setSelectedAuthor(selectedOption);
         const index = parseInt((selectedOption as ReactSelectOption).value);
-        const author: IAuthor | null = authors ? authors[index]: null
-        // @ts-ignore
+        const author: IAuthor = authors[index]
         setAuthor(author);
     };
 
@@ -93,7 +87,7 @@ const UpdateBook:React.FC<UpdateBookProps> = (props) => {
                     <i className='feather icon-x-circle text-dark text-right' onClick={() => props.changeVisibility()}/>
                 </Col>
             </Form.Row>
-            <Form noValidate validated={validated} className="pl-5">
+            <Form noValidate validated={validated} className="pl-5" onSubmit={handleUpdate}>
 
                 <Form.Row>
                     <Form.Group controlId="titleSelectID"  className="form-group-dev">
@@ -122,9 +116,7 @@ const UpdateBook:React.FC<UpdateBookProps> = (props) => {
                         />
                     </Form.Group>
                 </Form.Row>
-                <Button onClick={event => handleUpdate(event)}size='sm' variant='primary'
-                        className='float-right update-button'>
-                    Update
+                <Button type="submit" size='sm' variant='primary' className='float-right update-button'>Update
                 </Button>
             </Form>
         </div>

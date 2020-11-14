@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import LibraryApp from "./view/LibraryApp";
 import './asset/stylesheets/main.scss'

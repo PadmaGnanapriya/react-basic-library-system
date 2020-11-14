@@ -4,7 +4,7 @@ import {IAuthor} from "./types/LibraryTypes";
 import Authors from "./Authors";
 import Books from "./Books";
 
-const TextArea:React.FC =()=>{
+const TextArea:React.FC = () => {
     const sampleAuthors = [
         {name: "William Shakespeare"},
         {name: "Emily Dickinson"},
@@ -17,7 +17,7 @@ const TextArea:React.FC =()=>{
         {name: "Seneca"}
     ];
 
-    const [authors, setAuthors]= useState<IAuthor[]>(sampleAuthors);
+    const [authors, setAuthors] = useState<IAuthor[]>(sampleAuthors);
     /**
      * CURD - Create, Update, Read/List Delete
      *
@@ -50,12 +50,12 @@ const TextArea:React.FC =()=>{
         <React.Fragment>
             <Row>
                 <Col className="ml-4 mr-4 p-0 pl-3">
-                    <Books  authors={authors} />
+                    <Books  authors = {authors} />
                 </Col>
                 <Col className="ml-4 mr-5 p-0 pl-4">
-                    <Authors authors={authors} onAuthorCreated={handleOnAuthorCreated}
-                              onAuthorDeleted={handleAuthorDeleted}
-                              onAuthorUpdated={handleOnAuthorUpdated}/>
+                    <Authors authors={authors} onAuthorCreated = {handleOnAuthorCreated}
+                              onAuthorDeleted = {handleAuthorDeleted}
+                              onAuthorUpdated = {handleOnAuthorUpdated}/>
                 </Col>
             </Row>
         </React.Fragment>

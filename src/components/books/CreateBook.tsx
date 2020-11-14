@@ -17,7 +17,7 @@ const CreateBook:React.FC<CreateBookProps> =(props) =>{
     const [selectedAuthor, setSelectedAuthor] = useState<ValueType<ReactSelectOption> | null>(null);
     const [title, setTitle] = useState<string|null>(null);
     const [isbn, setISBN] = useState<string|null>(null);
-    const [author, setAuthor] = useState<string|null>(null);
+    const [author, setAuthor] = useState<IAuthor|null>(null);
 
     useEffect(() => {
         const options: ReactSelectOption[] = authors ? authors.map((author: IAuthor, index: number) => {
@@ -30,11 +30,8 @@ const CreateBook:React.FC<CreateBookProps> =(props) =>{
 
 
     const addBook = () => {
-        // @ts-ignore
-        props.onBookAdd({title:title, isbn:isbn, author:author});
-        Array.from(document.querySelectorAll("input")).forEach(
-            input => (input.value = "")
-        );
+        props.onBookAdd({title: title, isbn: isbn, author: author} as IBook);
+        Array.from(document.querySelectorAll("input")).forEach(input => (input.value = ""));
         setTitle(null);
         setISBN(null);
         setAuthor(null);
@@ -44,12 +41,9 @@ const CreateBook:React.FC<CreateBookProps> =(props) =>{
     const [borderColor, setBorderColor] = useState('#989898');
     const [validated, setValidated] = useState(false);
     const handleSubmit = (event:FormEvent) => {
-        const form = event.currentTarget;
-        // @ts-ignore
-        if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-        }else if(title!== null && isbn !== null && title !== '' && isbn !== '' && author !== null && author !== ''){
+        event.preventDefault();
+        event.stopPropagation();
+        if(title!== null && isbn !== null && title !== '' && isbn !== '' && author !== null){
                addBook();
                setBorderColor('#989898');
                setValidated(false);
@@ -73,9 +67,8 @@ const CreateBook:React.FC<CreateBookProps> =(props) =>{
     const handleOnBookAuthorChange = (selectedOption: ValueType<ReactSelectOption>) => {
         setSelectedAuthor(selectedOption);
         const index = parseInt((selectedOption as ReactSelectOption).value);
-        const author: IAuthor | null = authors ? authors[index]: null
+        const author: IAuthor = authors[index];
         if(validated){setBorderColor('#989898');}
-        // @ts-ignore
         setAuthor(author);
     };
 
@@ -120,7 +113,7 @@ const CreateBook:React.FC<CreateBookProps> =(props) =>{
                 <i className='feather icon-x-circle text-dark text-right' onClick={() => props.changeVisibility(false)}/>
             </Col>
         </Form.Row>
-        <Form noValidate validated={validated} className="pl-5">
+        <Form noValidate validated={validated} className="pl-5" onSubmit={handleSubmit}>
 
             <Form.Row>
                 <Form.Group controlId="titleSelectID"  className="form-group-dev">
@@ -147,7 +140,7 @@ const CreateBook:React.FC<CreateBookProps> =(props) =>{
                     />
                 </Form.Group>
             </Form.Row>
-            <Button onClick={event => handleSubmit(event)}size='sm' variant='primary'
+            <Button type="submit" size='sm' variant='primary'
                     className='float-right create-button'>
                 Create
             </Button>
