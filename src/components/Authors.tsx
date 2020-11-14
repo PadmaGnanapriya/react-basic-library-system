@@ -18,6 +18,16 @@ const Authors:React.FC<AuthorProps> =(props) =>{
     const [updatableIndex, setUpdatableIndex]=useState<number>(0);
     const [isVisible, setIsVisible] =useState(false);
 
+    const changeCreatable = (val: boolean) => {
+        setIsVisible(val);
+        setIsUpdatable(false);
+    };
+    const changeUpdatable = (val: boolean) => {
+        setIsUpdatable(val);
+        setIsVisible(false);
+    };
+
+
     const disableUpdate= (val:boolean)=>{
         setIsUpdatable(val);
     }
@@ -30,11 +40,11 @@ const Authors:React.FC<AuthorProps> =(props) =>{
                 {
                     (authors.length>0)?
                         <AuthorsList authors={authors} onAuthorDelete={props.onAuthorDeleted}
-                            setIsUpdatable={setIsUpdatable} setUpdatableIndex={setUpdatableIndex}/>:
+                            setIsUpdatable={changeUpdatable} setUpdatableIndex={setUpdatableIndex}/>:
                         <label className='font-italic'>No Authors listed here</label>
                 }
                 {
-                    !isVisible && <AddAuthor setIsVisible={setIsVisible}/>
+                    !isVisible && <AddAuthor setIsVisible={changeCreatable}/>
                 }
                 {
                     isUpdatable &&

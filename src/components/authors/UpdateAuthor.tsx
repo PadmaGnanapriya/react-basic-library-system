@@ -15,13 +15,10 @@ const UpdateAuthor:React.FC<UpdateAuthorProps> = (props)=>{
     const [authorName, setAuthorName] =useState<string|null>(props.author.name);
 
 
-    const handleSubmit = (event:FormEvent) => {
-        const form = event.currentTarget;
-        // @ts-ignore
-        if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-        }else if(authorName !== null && authorName !== ''){
+    const handleOnSubmit = (event:FormEvent) => {
+        event.preventDefault();
+        event.stopPropagation();
+        if(authorName !== null && authorName !== ''){
             props.onAuthorUpdated({name: authorName},keyIndex);
             setValidated(false);
             Array.from(document.querySelectorAll("input")).forEach(
@@ -33,6 +30,11 @@ const UpdateAuthor:React.FC<UpdateAuthorProps> = (props)=>{
             setValidated(true);
         }
     };
+
+    const onChangeAuthorField = (e:React.ChangeEvent<HTMLInputElement>)  => {
+        setAuthorName(e.target.value);
+        setValidated(false);
+    }
 
     return(
         <React.Fragment>
@@ -46,18 +48,17 @@ const UpdateAuthor:React.FC<UpdateAuthorProps> = (props)=>{
                     </Col>
                 </Form.Row>
 
-                <Form noValidate validated={validated} className="pl-5">
+                <Form noValidate validated={validated} className="pl-5" onSubmit={handleOnSubmit}>
                     <Form.Row>
                         <Form.Group controlId="authorSelectID"  className="form-group-dev">
                             <Form.Label className="text-left label-text">Name of Author</Form.Label>
                             <Form.Control required type="text" className="form-input"
                                           placeholder="" value={authorName ? authorName : ''}
-                                          onChange={(e:React.ChangeEvent<HTMLInputElement>)=> setAuthorName(e.target.value)}/>
-                            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                          onChange={onChangeAuthorField}/>
+                            <Form.Control.Feedback type="invalid">Author name can not be empty!</Form.Control.Feedback>
                         </Form.Group>
                     </Form.Row>
-                    <Button onClick={event => handleSubmit(event)}size='sm' variant='primary'
-                            className='float-right update-button'>
+                    <Button type="submit" size='sm' variant='primary' className='float-right update-button'>
                         Update
                     </Button>
                 </Form>

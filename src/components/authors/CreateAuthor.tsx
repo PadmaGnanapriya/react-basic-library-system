@@ -12,13 +12,10 @@ const CreateAuthor:React.FC<CreateAuthorProps> = (props)=>{
     const [author, setAuthor] =useState<string|null>(null);
 
 
-    const handleSubmit = (event:FormEvent) => {
-        const form = event.currentTarget;
-        // @ts-ignore
-        if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-        }else if(author !== null && author !== ''){
+    const handleOnSubmit = (event:FormEvent) => {
+        event.preventDefault();
+        event.stopPropagation();
+        if(author !== null && author !== ''){
             props.onAuthorCreated({name:author});
             setValidated(false);
             Array.from(document.querySelectorAll("input")).forEach(
@@ -29,6 +26,11 @@ const CreateAuthor:React.FC<CreateAuthorProps> = (props)=>{
             setValidated(true);
         }
     };
+
+    const onChangeAuthorField = (e:React.ChangeEvent<HTMLInputElement>)  => {
+        setAuthor(e.target.value);
+        setValidated(false);
+    }
 
     return(
         <React.Fragment>
@@ -42,17 +44,16 @@ const CreateAuthor:React.FC<CreateAuthorProps> = (props)=>{
                     </Col>
                 </Form.Row>
 
-                <Form noValidate validated={validated} className="pl-5">
+                <Form noValidate validated={validated} className="pl-5" onSubmit={handleOnSubmit}>
                     <Form.Row>
                         <Form.Group controlId="authorSelectID"  className="form-group-dev">
                             <Form.Label className="text-left label-text">Name of Author</Form.Label>
                             <Form.Control required type="text" className="form-input"
-                                          onChange={(e:React.ChangeEvent<HTMLInputElement>)=> setAuthor(e.target.value)}/>
-                            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                          onChange={onChangeAuthorField}/>
+                            <Form.Control.Feedback type="invalid">Author name can not be empty!</Form.Control.Feedback>
                         </Form.Group>
                     </Form.Row>
-                    <Button onClick={event => handleSubmit(event)}size='sm' variant='primary'
-                            className='float-right create-button'>
+                    <Button type="submit" size='sm' variant='primary' className='float-right create-button'>
                         Create
                     </Button>
                 </Form>
