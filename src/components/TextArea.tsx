@@ -13,7 +13,6 @@ const TextArea:React.FC =()=>{
         {name: "Leo Tolstoy"},
         {name: "Edgar Allan Poe"},
         {name: "Robert Ervin Howard"},
-        {name: "Rabindranath Tagore"},
         {name: "Rudyard Kipling"},
         {name: "Seneca"}
     ];

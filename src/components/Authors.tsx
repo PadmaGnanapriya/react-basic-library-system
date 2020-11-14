@@ -6,17 +6,18 @@ import AuthorsList from "./authors/AuthorList";
 import AddAuthor from "./authors/AddAuthor";
 import {Container} from "react-bootstrap";
 
-type AuthorProps={
-    authors:IAuthor[];
-    onAuthorCreated:(newAuthor: IAuthor)=>void;
-    onAuthorUpdated:(updatedAuthor:IAuthor,index:number)=> void;
-    onAuthorDeleted:(index:number)=>void;
+type AuthorProps = {
+    authors: IAuthor[];
+    onAuthorCreated: (newAuthor: IAuthor) => void;
+    onAuthorUpdated: (updatedAuthor:IAuthor,index:number) => void;
+    onAuthorDeleted: (index:number) => void;
 }
-const Authors:React.FC<AuthorProps> =(props) =>{
-    const {authors}=props;
-    const [isUpdatable, setIsUpdatable]=useState<boolean>(false);//Should be false
-    const [updatableIndex, setUpdatableIndex]=useState<number>(0);
-    const [isVisible, setIsVisible] =useState(false);
+
+const Authors:React.FC<AuthorProps> = (props) => {
+    const {authors} = props;
+    const [isUpdatable, setIsUpdatable] = useState<boolean>(false);//Should be false
+    const [updatableIndex, setUpdatableIndex] = useState<number>(0);
+    const [isVisible, setIsVisible] = useState(false);
 
     const changeCreatable = (val: boolean) => {
         setIsVisible(val);
@@ -28,7 +29,7 @@ const Authors:React.FC<AuthorProps> =(props) =>{
     };
 
 
-    const disableUpdate= (val:boolean)=>{
+    const disableUpdate = (val:boolean) => {
         setIsUpdatable(val);
     }
 

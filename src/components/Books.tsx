@@ -6,8 +6,8 @@ import {Container} from "react-bootstrap";
 import {IAuthor,IBook} from "./types/LibraryTypes";
 import UpdateBook from "./books/UpdateBook";
 
-type BooksProps={
-    authors:IAuthor[];
+type BooksProps = {
+    authors: IAuthor[];
 }
 
 const Books: React.FC<BooksProps> = (props) => {

@@ -2,17 +2,17 @@ import React, {FormEvent, useState} from "react";
 import {IAuthor} from "../types/LibraryTypes";
 import {Col, Button, Form} from "react-bootstrap"
 
-type UpdateAuthorProps={
-    onAuthorUpdated:(newAuthor:IAuthor, index:number)=>void;
-    keyIndex:number;
-    isUpdatable:(val:boolean)=>void;
-    author:IAuthor;
+type UpdateAuthorProps = {
+    onAuthorUpdated: (newAuthor: IAuthor, index: number) => void;
+    keyIndex: number;
+    isUpdatable: (val:boolean) => void;
+    author: IAuthor;
 }
 
-const UpdateAuthor:React.FC<UpdateAuthorProps> = (props)=>{
-    const {keyIndex,author}=props;
+const UpdateAuthor:React.FC<UpdateAuthorProps> = (props) => {
+    const {keyIndex,author} = props;
     const [validated, setValidated] = useState(false);
-    const [authorName, setAuthorName] =useState<string|null>(props.author.name);
+    const [authorName, setAuthorName] = useState<string|null>(props.author.name);
 
 
     const handleOnSubmit = (event:FormEvent) => {
@@ -36,6 +36,10 @@ const UpdateAuthor:React.FC<UpdateAuthorProps> = (props)=>{
         setValidated(false);
     }
 
+    const onClickClose = () => {
+        props.isUpdatable(false);
+    }
+
     return(
         <React.Fragment>
             <div className="update-author mt-2 mb-5 pb-2 pt-5">
@@ -44,7 +48,7 @@ const UpdateAuthor:React.FC<UpdateAuthorProps> = (props)=>{
                         <span>Update Author</span>
                     </Col>
                     <Col  className="text-right">
-                        <i className='feather icon-x-circle text-dark text-right' onClick={()=> props.isUpdatable(false)}/>
+                        <i className='feather icon-x-circle text-dark text-right' onClick={onClickClose}/>
                     </Col>
                 </Form.Row>
 

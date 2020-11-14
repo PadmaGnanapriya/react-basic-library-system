@@ -4,18 +4,16 @@ import {IAuthor, IBook} from "../types/LibraryTypes";
 import Select, {ValueType} from 'react-select';
 import {ReactSelectOption} from "../types/LibraryTypes";
 
-type UpdateBookProps={
-    onBookUpdate:(book:IBook, index:number)=>void;
-    authors:IAuthor[];
-    book:IBook;
-    keyIndex:number;
-    changeVisibility:()=>void;
+type UpdateBookProps = {
+    onBookUpdate: (book: IBook, index: number)=>void;
+    authors: IAuthor[];
+    book: IBook;
+    keyIndex: number;
+    changeVisibility: () => void;
 }
 
-// @ts-ignore
-const UpdateBook:React.FC<UpdateBookProps> =(props) =>{
+const UpdateBook:React.FC<UpdateBookProps> = (props) => {
     const {authors, book, keyIndex} = props;
-    // @ts-ignore
     const [authorOptions, setAuthorOptions] = useState<ReactSelectOption[]>([]);
     const [selectedAuthor, setSelectedAuthor] = useState<ValueType<ReactSelectOption>>({value: '1', label:book.author.name});
     const [title, setTitle]=useState<string>(book.title);
@@ -65,11 +63,11 @@ const UpdateBook:React.FC<UpdateBookProps> =(props) =>{
             height: '31px',
             boxShadow: state.isFocused ? null : null,
         }),
-        input: (provided:any, state:any) => ({
+        input: (provided: any, state: any) => ({
             ...provided,
             margin: '0px',
         }),
-        indicatorsContainer: (provided:any, state:any) => ({
+        indicatorsContainer: (provided: any, state: any) => ({
             ...provided,
             height: '28px',
         }),

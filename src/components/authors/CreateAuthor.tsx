@@ -2,12 +2,12 @@ import React, {FormEvent, useState} from "react";
 import {IAuthor} from "../types/LibraryTypes";
 import {Col, Button, Form} from "react-bootstrap"
 
-type CreateAuthorProps={
-    onAuthorCreated:(newAuthor:IAuthor)=>void;
-    setIsVisible:(val:boolean)=>void;
+type CreateAuthorProps = {
+    onAuthorCreated: (newAuthor: IAuthor) => void;
+    setIsVisible: (val: boolean) => void;
 }
 
-const CreateAuthor:React.FC<CreateAuthorProps> = (props)=>{
+const CreateAuthor:React.FC<CreateAuthorProps> = (props) => {
     const [validated, setValidated] = useState(false);
     const [author, setAuthor] =useState<string|null>(null);
 
@@ -27,9 +27,13 @@ const CreateAuthor:React.FC<CreateAuthorProps> = (props)=>{
         }
     };
 
-    const onChangeAuthorField = (e:React.ChangeEvent<HTMLInputElement>)  => {
+    const onChangeAuthorField = (e:React.ChangeEvent<HTMLInputElement>) => {
         setAuthor(e.target.value);
         setValidated(false);
+    }
+
+    const closeVisible = () => {
+        props.setIsVisible(false)
     }
 
     return(
@@ -40,7 +44,7 @@ const CreateAuthor:React.FC<CreateAuthorProps> = (props)=>{
                         <span>Create Author</span>
                     </Col>
                     <Col  className="text-right">
-                        <i className='feather icon-x-circle text-dark text-right' onClick={()=>props.setIsVisible(false)}/>
+                        <i className='feather icon-x-circle text-dark text-right' onClick={closeVisible}/>
                     </Col>
                 </Form.Row>
 
@@ -48,13 +52,11 @@ const CreateAuthor:React.FC<CreateAuthorProps> = (props)=>{
                     <Form.Row>
                         <Form.Group controlId="authorSelectID"  className="form-group-dev">
                             <Form.Label className="text-left label-text">Name of Author</Form.Label>
-                            <Form.Control required type="text" className="form-input"
-                                          onChange={onChangeAuthorField}/>
+                            <Form.Control required type="text" className="form-input" onChange={onChangeAuthorField}/>
                             <Form.Control.Feedback type="invalid">Author name can not be empty!</Form.Control.Feedback>
                         </Form.Group>
                     </Form.Row>
-                    <Button type="submit" size='sm' variant='primary' className='float-right create-button'>
-                        Create
+                    <Button type="submit" size='sm' variant='primary' className='float-right create-button'>Create
                     </Button>
                 </Form>
             </div>

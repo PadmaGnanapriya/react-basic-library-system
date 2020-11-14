@@ -5,23 +5,19 @@ import Select, {ValueType} from 'react-select';
 import {ReactSelectOption} from "../types/LibraryTypes";
 
 
-type CreateBookProps={
-    onBookAdd:(book:IBook)=>void;
-    changeVisibility:(val:boolean)=>void;
-    authors:IAuthor[];
+type CreateBookProps = {
+    onBookAdd: (book: IBook) => void;
+    changeVisibility:(val: boolean) => void;
+    authors: IAuthor[];
 }
 
-// @ts-ignore
 const CreateBook:React.FC<CreateBookProps> =(props) =>{
     const {authors} = props;
-    // @ts-ignore
-    const initBook: IBook = {title: '', ISBN: '', author: null}
-    const [book, setBook] = useState<IBook>(initBook);
     const [authorOptions, setAuthorOptions] = useState<ReactSelectOption[]>([]);
     const [selectedAuthor, setSelectedAuthor] = useState<ValueType<ReactSelectOption> | null>(null);
-    const [title, setTitle]=useState<string|null>(null);
-    const [isbn, setISBN]=useState<string|null>(null);
-    const [author, setAuthor]=useState<string|null>(null);
+    const [title, setTitle] = useState<string|null>(null);
+    const [isbn, setISBN] = useState<string|null>(null);
+    const [author, setAuthor] = useState<string|null>(null);
 
     useEffect(() => {
         const options: ReactSelectOption[] = authors ? authors.map((author: IAuthor, index: number) => {
@@ -33,22 +29,19 @@ const CreateBook:React.FC<CreateBookProps> =(props) =>{
     }, [authors]);
 
 
-    const addBook =() =>{
+    const addBook = () => {
         // @ts-ignore
         props.onBookAdd({title:title, isbn:isbn, author:author});
         Array.from(document.querySelectorAll("input")).forEach(
             input => (input.value = "")
         );
-        // Array.from(document.querySelectorAll("select")).forEach(
-        //     option => (option.value = "default")
-        // );
         setTitle(null);
         setISBN(null);
         setAuthor(null);
         setSelectedAuthor(null);
     }
 
-    const [borderColor, setBorderColor]=useState('#989898');
+    const [borderColor, setBorderColor] = useState('#989898');
     const [validated, setValidated] = useState(false);
     const handleSubmit = (event:FormEvent) => {
         const form = event.currentTarget;
@@ -73,7 +66,6 @@ const CreateBook:React.FC<CreateBookProps> =(props) =>{
                 setBorderColor('#dc3545');
             }else {
                 setBorderColor('#989898');
-                // setBorderColor('#28a745');
             }
         }
     };
@@ -88,7 +80,7 @@ const CreateBook:React.FC<CreateBookProps> =(props) =>{
     };
 
     const customSelectStyles = {
-        control: (provided:any, state:any) => ({
+        control: (provided: any, state: any) => ({
             ...provided,
             borderRadius:0,
             border: '2px solid '+borderColor,
@@ -96,11 +88,11 @@ const CreateBook:React.FC<CreateBookProps> =(props) =>{
             height: '31px',
             boxShadow: state.isFocused ? null : null,
         }),
-        input: (provided:any, state:any) => ({
+        input: (provided: any, state: any) => ({
             ...provided,
             margin: '0px',
         }),
-        indicatorsContainer: (provided:any, state:any) => ({
+        indicatorsContainer: (provided: any, state: any) => ({
             ...provided,
             height: '28px',
         }),

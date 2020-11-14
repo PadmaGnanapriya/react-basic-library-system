@@ -4,7 +4,7 @@ import {IAuthor} from "../types/LibraryTypes";
 
 
 
-type AuthorProps={
+type AuthorProps = {
     author:IAuthor
     num:number
     onAuthorDelete:(deleteAuthorNo:number)=>void
@@ -18,7 +18,7 @@ const Author:React.FC<AuthorProps>=(props)=>{
     const {num, author}=props;
 
     const [isEditClick,setIsEditClick]=useState<boolean>(false);
-    const handleEditClick=()=>{
+    const handleEditClick= () => {
         props.setIsUpdatable(true);
         props.setUpdatableIndex(num-1);
 
