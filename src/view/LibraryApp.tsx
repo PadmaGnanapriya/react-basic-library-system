@@ -1,13 +1,12 @@
 import React from "react";
 import Library from "../components/Library";
-// @ts-ignore
-import {BrowserRouter as Router, Switch, Route, Link, useRouteMatch, useParams} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import Home from "../components/Home";
 import About from "../components/About";
 import {Nav, Navbar} from 'react-bootstrap';
 
 const LibraryApp:React.FC = () => {
-    let browserHistory;
+
     return(
         <React.Fragment>
 

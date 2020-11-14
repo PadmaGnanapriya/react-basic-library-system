@@ -1,20 +1,16 @@
-import React, {useState} from "react";
+import React from "react";
 import {Col, Row,Container} from "react-bootstrap";
 import {IBook} from "../types/LibraryTypes";
 
-type bookProps={
-    num:number;
-    book:IBook;
-    handleDelete:(key:number)=>void
-    handleEdit:(key:number)=>void
+type bookProps = {
+    num: number;
+    book: IBook;
+    handleDelete: (key: number) => void
+    handleEdit: (key: number) => void
 }
 
 const Book: React.FC<bookProps> = (props) => {
-    const {num, book}=props;
-    const [isDisable,setIsDisable]=useState(true);
-    const [updatedBookTitle,setUpdatedBookTitle]=useState("");
-
-
+    const {num, book} = props;
 
     return(
             <React.Fragment>

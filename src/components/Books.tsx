@@ -6,46 +6,51 @@ import {Container} from "react-bootstrap";
 import {IAuthor,IBook} from "./types/LibraryTypes";
 import UpdateBook from "./books/UpdateBook";
 
-type BooksProps={
-    authors:IAuthor[];
+type BooksProps = {
+    authors: IAuthor[];
 }
 
 const Books: React.FC<BooksProps> = (props) => {
-    const {authors}=props;
-    const [books, setBooks]=useState<IBook[]>([]);
-    const [isVisible,setIsVisible]=useState(false);
-    const [isEditable, setIsEditable]=useState(false);
-    const [updateBookIndex, setUpdateBookIndex]=useState<number>(0);
+    const {authors} = props;
+    const [books, setBooks] = useState<IBook[]>([]);
+    const [isVisible, setIsVisible] = useState(false);
+    const [isEditable, setIsEditable] = useState(false);
+    const [updateBookIndex, setUpdateBookIndex] = useState<number>(0);
 
     const handleOnAdd = (book:IBook) => {
-        setBooks((books)=>[...books,book]);
-        console.log(books);
+        setBooks((books) => [...books, book]);
     }
 
     const handleDelete = (index:number) => {
-        // eslint-disable-next-line no-restricted-globals
-        let isDelete=confirm("Are you want to delete this Book?");
+        //eslint-disable-next-line no-restricted-globals
+        let isDelete = confirm("Are you want to delete this Book?");
         if(! isDelete){
             return;
         }
-        let copy=[...books]
+        let copy = [...books]
         copy.splice(index, 1)
         setBooks(copy);
     };
 
-    const handleEdit =(index:number)=>{
+    const handleEdit = (index: number) => {
         setIsEditable(true);
         setUpdateBookIndex(index);
+        setIsVisible(false)
     }
-    const handleBookUpdate=(updateBook:IBook,index:number)=>{
+    const handleBookUpdate = (updateBook: IBook, index: number)=>{
         const allBooks: IBook[] = books.slice();
         allBooks.splice(index, 1, updateBook);
         setBooks(allBooks);
         setIsEditable(false);
-        console.log(books);
     }
 
-    const hideUpdateForm = () =>{
+    const changeCreatable = (val: boolean) => {
+        setIsVisible(val);
+        setIsEditable(false);
+    };
+
+
+    const hideUpdateForm = () => {
         setIsEditable(false);
     }
 
@@ -54,11 +59,20 @@ const Books: React.FC<BooksProps> = (props) => {
             <Container className="books m-1 p-0 mt-0 pt-0 pl-1 pr-3" fluid>
                 <span className="text-left ml-1 pb-1 mb-4 books-title">Books</span>
                 {(books.length === 0) && <label className='font-italic'>No Books listed here</label>}
-                {(books.length !== 0) &&<BookList books={books} handleDelete={handleDelete} handleEdit={handleEdit}/>}
-                {isEditable && <UpdateBook book={books[updateBookIndex]}  changeVisibility={hideUpdateForm}
-                                        onBookUpdate={handleBookUpdate} authors={authors} keyIndex={updateBookIndex}/>}
-                {!isVisible && <AddBook changeVisibility={setIsVisible}/>}
-                {isVisible && <CreateBook onBookAdd={handleOnAdd} changeVisibility={setIsVisible} authors={authors}/>}
+                {
+                    (books.length !== 0) &&
+                    <BookList books = {books} handleDelete = {handleDelete} handleEdit = {handleEdit}/>
+                }{
+                    !isVisible &&
+                    <AddBook changeVisibility={changeCreatable}/>
+                }{
+                    isVisible &&
+                    <CreateBook onBookAdd = {handleOnAdd} changeVisibility = {setIsVisible} authors = {authors}/>
+                }{
+                    isEditable &&
+                    <UpdateBook book={books[updateBookIndex]}  changeVisibility = {hideUpdateForm}
+                    onBookUpdate = {handleBookUpdate}  authors = {authors}  keyIndex = {updateBookIndex}/>
+                }
             </Container>
         </React.Fragment>
     );
