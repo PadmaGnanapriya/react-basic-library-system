@@ -19,7 +19,6 @@ const Books: React.FC<BooksProps> = (props) => {
 
     const handleOnAdd = (book:IBook) => {
         setBooks((books)=>[...books,book]);
-        console.log(books);
     }
 
     const handleDelete = (index:number) => {
@@ -36,6 +35,7 @@ const Books: React.FC<BooksProps> = (props) => {
     const handleEdit =(index:number)=>{
         setIsEditable(true);
         setUpdateBookIndex(index);
+        setIsVisible(false)
     }
     const handleBookUpdate=(updateBook:IBook,index:number)=>{
         const allBooks: IBook[] = books.slice();
@@ -44,6 +44,12 @@ const Books: React.FC<BooksProps> = (props) => {
         setIsEditable(false);
         console.log(books);
     }
+
+    const changeCreatable = (val: boolean) => {
+        setIsVisible(val);
+        setIsEditable(false);
+    };
+
 
     const hideUpdateForm = () =>{
         setIsEditable(false);
@@ -55,10 +61,10 @@ const Books: React.FC<BooksProps> = (props) => {
                 <span className="text-left ml-1 pb-1 mb-4 books-title">Books</span>
                 {(books.length === 0) && <label className='font-italic'>No Books listed here</label>}
                 {(books.length !== 0) &&<BookList books={books} handleDelete={handleDelete} handleEdit={handleEdit}/>}
-                {isEditable && <UpdateBook book={books[updateBookIndex]}  changeVisibility={hideUpdateForm}
-                                        onBookUpdate={handleBookUpdate} authors={authors} keyIndex={updateBookIndex}/>}
-                {!isVisible && <AddBook changeVisibility={setIsVisible}/>}
+                {!isVisible && <AddBook changeVisibility={changeCreatable}/>}
                 {isVisible && <CreateBook onBookAdd={handleOnAdd} changeVisibility={setIsVisible} authors={authors}/>}
+                {isEditable && <UpdateBook book={books[updateBookIndex]}  changeVisibility={hideUpdateForm}
+                                           onBookUpdate={handleBookUpdate} authors={authors} keyIndex={updateBookIndex}/>}
             </Container>
         </React.Fragment>
     );

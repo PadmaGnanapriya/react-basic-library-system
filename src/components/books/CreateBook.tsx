@@ -3,7 +3,6 @@ import {Col, Button, Form} from "react-bootstrap"
 import {IAuthor, IBook} from "../types/LibraryTypes";
 import Select, {ValueType} from 'react-select';
 import {ReactSelectOption} from "../types/LibraryTypes";
-// import any = jasmine.any;
 
 
 type CreateBookProps={
@@ -73,7 +72,8 @@ const CreateBook:React.FC<CreateBookProps> =(props) =>{
             if(selectedAuthor===null){
                 setBorderColor('#dc3545');
             }else {
-                setBorderColor('#28a745');
+                setBorderColor('#989898');
+                // setBorderColor('#28a745');
             }
         }
     };
@@ -82,7 +82,7 @@ const CreateBook:React.FC<CreateBookProps> =(props) =>{
         setSelectedAuthor(selectedOption);
         const index = parseInt((selectedOption as ReactSelectOption).value);
         const author: IAuthor | null = authors ? authors[index]: null
-        if(validated){setBorderColor('#28a745');}
+        if(validated){setBorderColor('#989898');}
         // @ts-ignore
         setAuthor(author);
     };
@@ -106,6 +106,18 @@ const CreateBook:React.FC<CreateBookProps> =(props) =>{
         }),
     }
 
+    const onChangeTitle = (e:React.ChangeEvent<HTMLInputElement>) => {
+        setTitle(e.target.value);
+        setValidated(false);
+        setBorderColor('#989898');
+    }
+
+    const onChangeISBN = (e:React.ChangeEvent<HTMLInputElement>) => {
+        setISBN(e.target.value);
+        setValidated(false);
+        setBorderColor('#989898');
+    }
+
     return(
         <div className="create-book mt-2 mb-5 pb-2 pt-5">
         <Form.Row>
@@ -121,17 +133,15 @@ const CreateBook:React.FC<CreateBookProps> =(props) =>{
             <Form.Row>
                 <Form.Group controlId="titleSelectID"  className="form-group-dev">
                     <Form.Label className="text-left label-text">Title of Book</Form.Label>
-                    <Form.Control required type="text" className="form-input"
-                        onChange={(e:React.ChangeEvent<HTMLInputElement>)=> setTitle(e.target.value)}/>
-                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                    <Form.Control required type="text" className="form-input" onChange={onChangeTitle}/>
+                    <Form.Control.Feedback type="invalid">Book title can not be empty!</Form.Control.Feedback>
                 </Form.Group>
             </Form.Row>
             <Form.Row>
                 <Form.Group controlId="isbnSelectID"   className="form-group-dev">
                     <Form.Label className="text-left label-text">ISBN</Form.Label>
-                    <Form.Control className="form-input"  required type="text"
-                      onChange={(e:React.ChangeEvent<HTMLInputElement>)=> setISBN(e.target.value)}/>
-                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                    <Form.Control className="form-input"  required type="text" onChange={onChangeISBN}/>
+                    <Form.Control.Feedback type="invalid">ISBN field can not be empty!</Form.Control.Feedback>
                 </Form.Group>
             </Form.Row>
             <Form.Row>
