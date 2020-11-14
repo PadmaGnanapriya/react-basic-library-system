@@ -42,7 +42,6 @@ const Books: React.FC<BooksProps> = (props) => {
         allBooks.splice(index, 1, updateBook);
         setBooks(allBooks);
         setIsEditable(false);
-        console.log(books);
     }
 
     const changeCreatable = (val: boolean) => {
