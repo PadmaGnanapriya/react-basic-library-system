@@ -1,11 +1,11 @@
 import React from "react";
 import {Container, Row} from "react-bootstrap";
 
-type AddAuthorProps={
-    setIsVisible:(val:boolean)=>void;
+type AddAuthorProps = {
+    setIsVisible: (val: boolean) => void;
 }
 
-const AddAuthor:React.FC<AddAuthorProps> =(props)=>{
+const AddAuthor:React.FC<AddAuthorProps> = (props) => {
     return(
         <React.Fragment>
             <Container>

@@ -4,43 +4,44 @@ import {IAuthor, IBook} from "../types/LibraryTypes";
 import Select, {ValueType} from 'react-select';
 import {ReactSelectOption} from "../types/LibraryTypes";
 
-type UpdateBookProps={
-    onBookUpdate:(book:IBook, index:number)=>void;
-    authors:IAuthor[];
-    book:IBook;
-    keyIndex:number;
-    changeVisibility:()=>void;
+type UpdateBookProps = {
+    onBookUpdate: (book: IBook, index: number)=>void;
+    authors: IAuthor[];
+    book: IBook;
+    keyIndex: number;
+    changeVisibility: () => void;
 }
 
-// @ts-ignore
-const UpdateBook:React.FC<UpdateBookProps> =(props) =>{
+const UpdateBook:React.FC<UpdateBookProps> = (props) => {
     const {authors, book, keyIndex} = props;
-    // @ts-ignore
     const [authorOptions, setAuthorOptions] = useState<ReactSelectOption[]>([]);
-    const [selectedAuthor, setSelectedAuthor] = useState<ValueType<ReactSelectOption>>({value: '1', label:book.author.name});
+    const [selectedAuthor, setSelectedAuthor] = useState<ValueType<ReactSelectOption>>
+        ({value: '1', label:book.author.name});
     const [title, setTitle]=useState<string>(book.title);
     const [isbn, setISBN]=useState<string>(book.isbn);
-    const [author, setAuthor]=useState<string>(book.author.name);
+    const [author, setAuthor]=useState<IAuthor>(book.author);
+
+    useEffect(() => {
+        setTitle(book.title);
+        setISBN(book.isbn);
+        setAuthor(book.author);
+        setSelectedAuthor({value: '1', label:book.author.name})
+    }, [book])
 
     useEffect(() => {
         const options: ReactSelectOption[] = authors ? authors.map((author: IAuthor, index: number) => {
             const authorOption: ReactSelectOption = {value: index + '', label: author.name};
             return authorOption;
-        }) : [];
+        }) : [authors];
 
         setAuthorOptions(options)
     }, [authors]);
 
-
     const [validated, setValidated] = useState(false);
     const handleUpdate = (event:FormEvent) => {
-        const form = event.currentTarget;
-        // @ts-ignore
-        if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-        }else if(title!== null && isbn !== null && title !== '' && isbn !== ''){
-            // @ts-ignore
+        event.preventDefault();
+        event.stopPropagation();
+        if(title!== null && isbn !== null && title !== '' && isbn !== ''){
             props.onBookUpdate({title:title, isbn:isbn, author:author},keyIndex);
             setValidated(false);
         }else {
@@ -51,8 +52,7 @@ const UpdateBook:React.FC<UpdateBookProps> =(props) =>{
     const handleOnBookAuthorChange = (selectedOption: ValueType<ReactSelectOption>) => {
         setSelectedAuthor(selectedOption);
         const index = parseInt((selectedOption as ReactSelectOption).value);
-        const author: IAuthor | null = authors ? authors[index]: null
-        // @ts-ignore
+        const author: IAuthor = authors[index]
         setAuthor(author);
     };
 
@@ -65,14 +65,24 @@ const UpdateBook:React.FC<UpdateBookProps> =(props) =>{
             height: '31px',
             boxShadow: state.isFocused ? null : null,
         }),
-        input: (provided:any, state:any) => ({
+        input: (provided: any, state: any) => ({
             ...provided,
             margin: '0px',
         }),
-        indicatorsContainer: (provided:any, state:any) => ({
+        indicatorsContainer: (provided: any, state: any) => ({
             ...provided,
             height: '28px',
         }),
+    }
+
+    const onChangeTitle = (e:React.ChangeEvent<HTMLInputElement>) => {
+        setTitle(e.target.value);
+        setValidated(false);
+    }
+
+    const onChangeISBN = (e:React.ChangeEvent<HTMLInputElement>) => {
+        setISBN(e.target.value);
+        setValidated(false);
     }
 
     return(
@@ -85,22 +95,22 @@ const UpdateBook:React.FC<UpdateBookProps> =(props) =>{
                     <i className='feather icon-x-circle text-dark text-right' onClick={() => props.changeVisibility()}/>
                 </Col>
             </Form.Row>
-            <Form noValidate validated={validated} className="pl-5">
+            <Form noValidate validated={validated} className="pl-5" onSubmit={handleUpdate}>
 
                 <Form.Row>
                     <Form.Group controlId="titleSelectID"  className="form-group-dev">
                         <Form.Label className="text-left label-text">Title of Book</Form.Label>
-                        <Form.Control required type="text" className="form-input" placeholder="" value={title ? title : ''}
-                                      onChange={(e:React.ChangeEvent<HTMLInputElement>)=> setTitle(e.target.value)}/>
-                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                        <Form.Control required type="text" className="form-input" placeholder=""
+                                      value={title ? title : ''} onChange={onChangeTitle}/>
+                        <Form.Control.Feedback type="invalid">Book title can not be empty!</Form.Control.Feedback>
                     </Form.Group>
                 </Form.Row>
                 <Form.Row>
                     <Form.Group controlId="isbnSelectID"   className="form-group-dev">
                         <Form.Label className="text-left label-text">ISBN</Form.Label>
-                        <Form.Control className="form-input"  required type="text" placeholder="" value={isbn ? isbn : ''}
-                                      onChange={(e:React.ChangeEvent<HTMLInputElement>)=> setISBN(e.target.value)}/>
-                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                        <Form.Control className="form-input"  required type="text" placeholder=""
+                                      value={isbn ? isbn : ''} onChange={onChangeISBN}/>
+                        <Form.Control.Feedback type="invalid">ISBN field can not be empty!</Form.Control.Feedback>
                     </Form.Group>
                 </Form.Row>
                 <Form.Row>
@@ -114,9 +124,7 @@ const UpdateBook:React.FC<UpdateBookProps> =(props) =>{
                         />
                     </Form.Group>
                 </Form.Row>
-                <Button onClick={event => handleUpdate(event)}size='sm' variant='primary'
-                        className='float-right update-button'>
-                    Update
+                <Button type="submit" size='sm' variant='primary' className='float-right update-button'>Update
                 </Button>
             </Form>
         </div>

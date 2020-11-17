@@ -3,9 +3,9 @@ export interface IAuthor {
 }
 
 export interface IBook{
-    title:string;
-    isbn:string;
-    author:IAuthor;
+    title: string;
+    isbn: string;
+    author: IAuthor;
 }
 
 export type ReactSelectOption = {
