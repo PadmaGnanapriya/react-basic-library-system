@@ -69,6 +69,7 @@ const CreateBook:React.FC<CreateBookProps> =(props) =>{
         const index = parseInt((selectedOption as ReactSelectOption).value);
         const author: IAuthor = authors[index];
         if(validated){setBorderColor('#989898');}
+        setValidated(false);
         setAuthor(author);
     };
 
@@ -110,7 +111,8 @@ const CreateBook:React.FC<CreateBookProps> =(props) =>{
                 <span>Create Book</span>
             </Col>
             <Col  className="text-right">
-                <i className='feather icon-x-circle text-dark text-right' onClick={() => props.changeVisibility(false)}/>
+                <i className='feather icon-x-circle text-dark text-right'
+                   onClick={() => props.changeVisibility(false)}/>
             </Col>
         </Form.Row>
         <Form noValidate validated={validated} className="pl-5" onSubmit={handleSubmit}>

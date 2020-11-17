@@ -15,7 +15,8 @@ type UpdateBookProps = {
 const UpdateBook:React.FC<UpdateBookProps> = (props) => {
     const {authors, book, keyIndex} = props;
     const [authorOptions, setAuthorOptions] = useState<ReactSelectOption[]>([]);
-    const [selectedAuthor, setSelectedAuthor] = useState<ValueType<ReactSelectOption>>({value: '1', label:book.author.name});
+    const [selectedAuthor, setSelectedAuthor] = useState<ValueType<ReactSelectOption>>
+        ({value: '1', label:book.author.name});
     const [title, setTitle]=useState<string>(book.title);
     const [isbn, setISBN]=useState<string>(book.isbn);
     const [author, setAuthor]=useState<IAuthor>(book.author);
@@ -92,16 +93,16 @@ const UpdateBook:React.FC<UpdateBookProps> = (props) => {
                 <Form.Row>
                     <Form.Group controlId="titleSelectID"  className="form-group-dev">
                         <Form.Label className="text-left label-text">Title of Book</Form.Label>
-                        <Form.Control required type="text" className="form-input" placeholder="" value={title ? title : ''}
-                                      onChange={onChangeTitle}/>
+                        <Form.Control required type="text" className="form-input" placeholder=""
+                                      value={title ? title : ''} onChange={onChangeTitle}/>
                         <Form.Control.Feedback type="invalid">Book title can not be empty!</Form.Control.Feedback>
                     </Form.Group>
                 </Form.Row>
                 <Form.Row>
                     <Form.Group controlId="isbnSelectID"   className="form-group-dev">
                         <Form.Label className="text-left label-text">ISBN</Form.Label>
-                        <Form.Control className="form-input"  required type="text" placeholder="" value={isbn ? isbn : ''}
-                                      onChange={onChangeISBN}/>
+                        <Form.Control className="form-input"  required type="text" placeholder=""
+                                      value={isbn ? isbn : ''} onChange={onChangeISBN}/>
                         <Form.Control.Feedback type="invalid">ISBN field can not be empty!</Form.Control.Feedback>
                     </Form.Group>
                 </Form.Row>
