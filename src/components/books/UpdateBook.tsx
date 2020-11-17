@@ -22,10 +22,17 @@ const UpdateBook:React.FC<UpdateBookProps> = (props) => {
     const [author, setAuthor]=useState<IAuthor>(book.author);
 
     useEffect(() => {
+        setTitle(book.title);
+        setISBN(book.isbn);
+        setAuthor(book.author);
+        setSelectedAuthor({value: '1', label:book.author.name})
+    }, [book])
+
+    useEffect(() => {
         const options: ReactSelectOption[] = authors ? authors.map((author: IAuthor, index: number) => {
             const authorOption: ReactSelectOption = {value: index + '', label: author.name};
             return authorOption;
-        }) : [];
+        }) : [authors];
 
         setAuthorOptions(options)
     }, [authors]);
