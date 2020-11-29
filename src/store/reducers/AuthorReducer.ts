@@ -1,5 +1,5 @@
-import {IAuthor} from "../components/types/LibraryTypes";
-import {ADD_AUTHOR, AuthorActions, DELETE_AUTHOR, SHOW_AUTHOR_LIST, UPDATE_AUTHOR} from "../components/types/Actions";
+import {IAuthor} from "../../components/types/LibraryTypes";
+import {ADD_AUTHOR, AuthorActions, DELETE_AUTHOR, SHOW_AUTHOR_LIST, UPDATE_AUTHOR} from "../../components/types/Actions";
 
 export interface AuthorState {
     authors: IAuthor[]
@@ -9,7 +9,7 @@ const initialState = {
     authors: [{name: "Padma"}, {name: "Ovindu"}]
 }
 
-const authorReducer = (
+const AuthorReducer = (
     state: AuthorState = initialState,
     action: AuthorActions
 ) => {
@@ -37,4 +37,4 @@ const authorReducer = (
     }
 }
 
-export {authorReducer};
+export {AuthorReducer};

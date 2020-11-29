@@ -1,9 +1,9 @@
-import {IBook, UpdatableBook} from "../components/types/LibraryTypes";
+import {IBook, UpdatableBook} from "../../components/types/LibraryTypes";
 import {
     ADD_BOOK,
     DELETE_BOOK,
     SHOW_BOOK_LIST, UPDATE_BOOK
-} from "../components/types/Actions";
+} from "../../components/types/Actions";
 
 
 export const addBook = (book: IBook): { payload: IBook; type: string } => ({
