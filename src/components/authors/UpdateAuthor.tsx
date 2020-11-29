@@ -13,30 +13,28 @@ type UpdateAuthorProps = {
 const UpdateAuthor: React.FC<UpdateAuthorProps> = (props) => {
     const {keyIndex} = props;
     const [validated, setValidated] = useState(false);
-    const authors= useSelector<AuthorState>((state: { authors: IAuthor[]; }) => state.authors);
-    // @ts-ignore
-    const [authorName, setAuthorName] = useState<string | null>(authors[keyIndex].name);
+    const authors: any = useSelector<AuthorState>((state: { authors: IAuthor[]; }) => state.authors);
+    const [authorName, setAuthorName] = useState<string>(authors[keyIndex].name);
     const dispatch = useDispatch();
     const updateAuthorDispatch = (authorData: UpdatableAuthor) => {
         dispatch(updateAuthor(authorData));
     };
 
     useEffect(() => {
-        // @ts-ignore
         setAuthorName(authors[keyIndex].name);
     }, [keyIndex])
 
     const handleOnSubmit = (event: FormEvent) => {
         event.preventDefault();
         event.stopPropagation();
-        if (authorName !== null && authorName !== '') {
+        if (authorName !== '') {
             updateAuthorDispatch({author: {name: authorName}, index: keyIndex});
             setValidated(false);
             Array.from(document.querySelectorAll("input")).forEach(
                 input => (input.value = "")
             );
             props.isUpdatable(false);
-            setAuthorName(null);
+            setAuthorName('');
         } else {
             setValidated(true);
         }

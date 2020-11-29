@@ -1,22 +1,22 @@
 import React from "react";
 import Book from "./Book";
 import {IBook} from "../types/LibraryTypes";
+import {useSelector} from "react-redux";
+import {BookState} from "../../store/reducers/BookReducer";
 
 
 
 
 type BooksProps = {
-    books: IBook[]
-    handleDelete: (num: number) => void
     handleEdit: (num: number) => void
 }
 
 const BookList: React.FC<BooksProps> = (props) =>{
-    const {books} = props;
+    const books:any = useSelector<BookState>((state) => state.books);
+
 
     const renderBooks =books.map((book: IBook, index: number) =>
-              <Book num={index+1} book={book} key={index} handleDelete={num =>props.handleDelete(num)}
-              handleEdit={num =>props.handleEdit(num)}/>
+        <Book num={index+1} book={book} key={index} handleEdit={num =>props.handleEdit(num)}/>
     );
 
     return(

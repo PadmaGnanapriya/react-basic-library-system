@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import {IAuthor} from "./types/LibraryTypes";
 import CreateAuthor from "./authors/CreateAuthor";
 import UpdateAuthor from "./authors/UpdateAuthor";
 import AuthorsList from "./authors/AuthorList";

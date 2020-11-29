@@ -11,11 +11,10 @@ type AuthorsListProps = {
 }
 
 const AuthorsList: React.FC<AuthorsListProps> = (props) => {
-    const authors = useSelector<AuthorState>((state: { authors: IAuthor[]; }) => state.authors);
+    const authors:any = useSelector<AuthorState>((state: { authors: IAuthor[]; }) => state.authors);
 
     const renderAuthors = () => {
         return (
-            // @ts-ignore
             authors.map((author: IAuthor, index: number) =>
                 <Author key={index} author={author} num={index + 1}
                         setIsUpdatable={props.setIsUpdatable} setUpdatableIndex={props.setUpdatableIndex}/>)
