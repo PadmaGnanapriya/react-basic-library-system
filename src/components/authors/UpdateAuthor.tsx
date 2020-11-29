@@ -1,29 +1,30 @@
 import React, {FormEvent, useEffect, useState} from "react";
 import {IAuthor, UpdatableAuthor} from "../types/LibraryTypes";
 import {Col, Button, Form} from "react-bootstrap"
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {updateAuthor} from "../../store/actions/AuthorActions";
+import {AuthorState} from "../../store/reducers/AuthorReducer";
 
 type UpdateAuthorProps = {
-    onAuthorUpdated: (newAuthor: IAuthor, index: number) => void;
     keyIndex: number;
     isUpdatable: (val: boolean) => void;
-    author: IAuthor;
 }
 
 const UpdateAuthor: React.FC<UpdateAuthorProps> = (props) => {
-    const {keyIndex, author} = props;
+    const {keyIndex} = props;
     const [validated, setValidated] = useState(false);
-    const [authorName, setAuthorName] = useState<string | null>(author.name);
-
-    useEffect(() => {
-        setAuthorName(author.name);
-    }, [author])
-
+    const authors= useSelector<AuthorState>((state: { authors: IAuthor[]; }) => state.authors);
+    // @ts-ignore
+    const [authorName, setAuthorName] = useState<string | null>(authors[keyIndex].name);
     const dispatch = useDispatch();
     const updateAuthorDispatch = (authorData: UpdatableAuthor) => {
         dispatch(updateAuthor(authorData));
     };
+
+    useEffect(() => {
+        // @ts-ignore
+        setAuthorName(authors[keyIndex].name);
+    }, [keyIndex])
 
     const handleOnSubmit = (event: FormEvent) => {
         event.preventDefault();
@@ -46,9 +47,7 @@ const UpdateAuthor: React.FC<UpdateAuthorProps> = (props) => {
         setValidated(false);
     }
 
-    const onClickClose = () => {
-        props.isUpdatable(false);
-    }
+    const onClickClose = () => props.isUpdatable(false);
 
     return (
         <React.Fragment>

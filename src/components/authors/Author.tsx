@@ -8,24 +8,18 @@ import {useDispatch} from "react-redux";
 type AuthorProps = {
     author:IAuthor
     num:number
-    onAuthorDelete:(deleteAuthorNo:number)=>void
     setIsUpdatable:(val:boolean)=>void;
     setUpdatableIndex:(num:number)=>void;
 }
 
 const Author:React.FC<AuthorProps>=(props)=>{
     const {num, author}=props;
+    const dispatch = useDispatch();
+    const deleteAuthorDispatch = (index:number) => dispatch(deleteAuthor(index));
+    const handleDelete =() => deleteAuthorDispatch(num-1)
     const handleEditClick= () => {
         props.setIsUpdatable(true);
         props.setUpdatableIndex(num-1);
-    }
-    const dispatch = useDispatch();
-    const deleteAuthorDispatch = (index:number) => {
-        dispatch(deleteAuthor(index));
-    };
-
-    const handleDelete =() => {
-        deleteAuthorDispatch(num-1)
     }
 
     return(

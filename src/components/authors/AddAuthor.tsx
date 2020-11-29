@@ -10,7 +10,7 @@ const AddAuthor:React.FC<AddAuthorProps> = (props) => {
         <React.Fragment>
             <Container>
                 <Row className="add-author mt-3 mb-4" >
-                    <i className='feather icon-plus' onClick={()=>props.setIsVisible(true)}></i>
+                    <i className='feather icon-plus' onClick={()=>props.setIsVisible(true)}/>
                     <span onClick={()=>props.setIsVisible(true)}>Add Author</span>
                 </Row>
             </Container>
