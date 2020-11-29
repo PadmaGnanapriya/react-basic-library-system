@@ -1,6 +1,8 @@
 import React, {FormEvent, useState} from "react";
 import {IAuthor} from "../types/LibraryTypes";
 import {Col, Button, Form} from "react-bootstrap"
+import {addAuthor} from "../../store/actions/AuthorActions";
+import {useDispatch} from "react-redux";
 
 type CreateAuthorProps = {
     onAuthorCreated: (newAuthor: IAuthor) => void;
@@ -11,12 +13,16 @@ const CreateAuthor:React.FC<CreateAuthorProps> = (props) => {
     const [validated, setValidated] = useState(false);
     const [author, setAuthor] =useState<string|null>(null);
 
+    const dispatch = useDispatch();
+    const addAuthorDispatch = (author: IAuthor) => {
+        dispatch(addAuthor(author));
+    };
 
     const handleOnSubmit = (event:FormEvent) => {
         event.preventDefault();
         event.stopPropagation();
         if(author !== null && author !== ''){
-            props.onAuthorCreated({name:author});
+            addAuthorDispatch({name:author});
             setValidated(false);
             Array.from(document.querySelectorAll("input")).forEach(
                 input => (input.value = "")
