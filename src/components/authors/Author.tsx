@@ -1,17 +1,22 @@
 import React from "react";
 import {Row, Col, Container} from "react-bootstrap";
 import {IAuthor} from "../types/LibraryTypes";
+import {deleteAuthor} from "../../store/actions/AuthorActions";
+import {useDispatch} from "react-redux";
+
 
 type AuthorProps = {
     author:IAuthor
     num:number
-    onAuthorDelete:(deleteAuthorNo:number)=>void
     setIsUpdatable:(val:boolean)=>void;
     setUpdatableIndex:(num:number)=>void;
 }
 
 const Author:React.FC<AuthorProps>=(props)=>{
     const {num, author}=props;
+    const dispatch = useDispatch();
+    const deleteAuthorDispatch = (index:number) => dispatch(deleteAuthor(index));
+    const handleDelete =() => deleteAuthorDispatch(num-1)
     const handleEditClick= () => {
         props.setIsUpdatable(true);
         props.setUpdatableIndex(num-1);
@@ -25,7 +30,7 @@ const Author:React.FC<AuthorProps>=(props)=>{
                 </Col>
                 <Col xs={3} className='text-right author-controls'>
                     <i className='feather icon-edit mr-3' onClick={handleEditClick}/>
-                    <i className='feather icon-trash-2' onClick={()=>props.onAuthorDelete(num-1)}/>
+                    <i className='feather icon-trash-2' onClick={handleDelete}/>
                 </Col>
             </Row>
         </Container>

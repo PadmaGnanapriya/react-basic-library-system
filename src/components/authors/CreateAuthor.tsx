@@ -1,27 +1,30 @@
 import React, {FormEvent, useState} from "react";
 import {IAuthor} from "../types/LibraryTypes";
 import {Col, Button, Form} from "react-bootstrap"
+import {addAuthor} from "../../store/actions/AuthorActions";
+import {useDispatch} from "react-redux";
 
 type CreateAuthorProps = {
-    onAuthorCreated: (newAuthor: IAuthor) => void;
     setIsVisible: (val: boolean) => void;
 }
 
 const CreateAuthor:React.FC<CreateAuthorProps> = (props) => {
     const [validated, setValidated] = useState(false);
-    const [author, setAuthor] =useState<string|null>(null);
-
+    const [author, setAuthor] =useState<string>('');
+    const dispatch = useDispatch();
+    const addAuthorDispatch = (author: IAuthor) => dispatch(addAuthor(author));
+    const closeVisible = () => props.setIsVisible(false)
 
     const handleOnSubmit = (event:FormEvent) => {
         event.preventDefault();
         event.stopPropagation();
-        if(author !== null && author !== ''){
-            props.onAuthorCreated({name:author});
+        if(author !== ''){
+            addAuthorDispatch({name:author});
             setValidated(false);
             Array.from(document.querySelectorAll("input")).forEach(
                 input => (input.value = "")
             );
-            setAuthor(null);
+            setAuthor('');
         }else {
             setValidated(true);
         }
@@ -30,10 +33,6 @@ const CreateAuthor:React.FC<CreateAuthorProps> = (props) => {
     const onChangeAuthorField = (e:React.ChangeEvent<HTMLInputElement>) => {
         setAuthor(e.target.value);
         setValidated(false);
-    }
-
-    const closeVisible = () => {
-        props.setIsVisible(false)
     }
 
     return(
