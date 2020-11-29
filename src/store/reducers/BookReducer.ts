@@ -1,5 +1,5 @@
-import {IBook} from "../components/types/LibraryTypes";
-import {ADD_BOOK, BookActions, DELETE_BOOK, SHOW_BOOK_LIST, UPDATE_BOOK} from "../components/types/Actions";
+import {IBook} from "../../components/types/LibraryTypes";
+import {ADD_BOOK, BookActions, DELETE_BOOK, SHOW_BOOK_LIST, UPDATE_BOOK} from "../../components/types/Actions";
 
 export interface BookState {
     books: IBook[]
@@ -9,7 +9,7 @@ const initialState = {
     books: [{title: "Padma Story", author: {name: 'Padma'}, isbn: '2323'}]
 }
 
-const authorReducer = (
+const BookReducer = (
     state: BookState = initialState,
     action: BookActions
 ) => {
@@ -37,4 +37,4 @@ const authorReducer = (
     }
 }
 
-export {authorReducer};
+export {BookReducer};

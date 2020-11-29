@@ -1,5 +1,5 @@
-import {IAuthor, UpdatableAuthor} from "../components/types/LibraryTypes";
-import {ADD_AUTHOR, DELETE_AUTHOR, SHOW_AUTHOR_LIST, UPDATE_AUTHOR} from "../components/types/Actions";
+import {IAuthor, UpdatableAuthor} from "../../components/types/LibraryTypes";
+import {ADD_AUTHOR, DELETE_AUTHOR, SHOW_AUTHOR_LIST, UPDATE_AUTHOR} from "../../components/types/Actions";
 
 
 export const addAuthor = (author: IAuthor): { payload: IAuthor; type: string } => ({
