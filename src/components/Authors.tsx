@@ -40,7 +40,7 @@ const Authors:React.FC<AuthorProps> = (props) => {
                 <span className = "text-left ml-1 pb-1 mb-4 authors-title">Authors</span>
                 {
                     (authors.length>0)?
-                        <AuthorsList authors = {authors}  onAuthorDelete = {props.onAuthorDeleted}
+                        <AuthorsList onAuthorDelete = {props.onAuthorDeleted}
                             setIsUpdatable = {changeUpdatable} setUpdatableIndex = {setUpdatableIndex}/>:
                         <label className = 'font-italic'>No Authors listed here</label>
                 }{
