@@ -3,10 +3,10 @@ import CreateAuthor from "./authors/CreateAuthor";
 import UpdateAuthor from "./authors/UpdateAuthor";
 import AuthorsList from "./authors/AuthorList";
 import AddAuthor from "./authors/AddAuthor";
-import {Container} from "react-bootstrap";
+import {Col, Container, Row} from "react-bootstrap";
 
 
-const Authors:React.FC = () => {
+const Authors: React.FC = () => {
     const [isUpdatable, setIsUpdatable] = useState<boolean>(false);
     const [updatableIndex, setUpdatableIndex] = useState<number>(0);
     const [isVisible, setIsVisible] = useState(false);
@@ -23,21 +23,26 @@ const Authors:React.FC = () => {
 
     const disableUpdate = (val: boolean) => setIsUpdatable(val);
 
-    return(
-        <React.Fragment>
-            <Container className = "authors-dev m-1 p-0 mt-0 pt-0 pl-1 pr-3" fluid>
-                <span className = "text-left ml-1 pb-1 mb-4 authors-title">Authors</span>
-
-                <AuthorsList setIsUpdatable = {changeUpdatable} setUpdatableIndex = {setUpdatableIndex}/>
-              {
-                    !isVisible && <AddAuthor setIsVisible = {changeCreatable}/>
-                }{
-                    isUpdatable && <UpdateAuthor keyIndex={updatableIndex} isUpdatable={disableUpdate}/>
-                }{
-                    isVisible && <CreateAuthor setIsVisible = {setIsVisible}/>
-                }
-            </Container>
-        </React.Fragment>
+    return (
+        <Container className="authors">
+            <Row>
+                <Col className="text-left pl-0 py-1 mb-4 authors-title">Authors</Col>
+            </Row>
+            <Row>
+                <Col>
+                    <AuthorsList setIsUpdatable={changeUpdatable} setUpdatableIndex={setUpdatableIndex}/>
+                </Col>
+            </Row>
+            <Row>
+                <Col>{!isVisible && <AddAuthor setIsVisible={changeCreatable}/>}</Col>
+            </Row>
+            <Row>
+                <Col xs={12} sm={12} md={9}>
+                    {isUpdatable && <UpdateAuthor keyIndex={updatableIndex} isUpdatable={disableUpdate}/>}
+                    {isVisible && <CreateAuthor setIsVisible={setIsVisible}/>}
+                </Col>
+            </Row>
+        </Container>
     );
 }
 export default Authors;

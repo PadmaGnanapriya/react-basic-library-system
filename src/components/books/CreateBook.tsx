@@ -102,9 +102,9 @@ const CreateBook: React.FC<CreateBookProps> = (props) => {
     }
 
     return (
-        <div className="create-book mt-2 mb-5 pb-2 pt-5">
+        <div className="create-book pb-2 pt-5">
             <Form.Row>
-                <Col className="text-left pl-1 mb-3">
+                <Col className="text-left p-0 m-0 mb-3">
                     <span>Create Book</span>
                 </Col>
                 <Col className="text-right">
