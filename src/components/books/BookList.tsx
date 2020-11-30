@@ -12,7 +12,9 @@ type BooksProps = {
 }
 
 const BookList: React.FC<BooksProps> = (props) =>{
-    const books:any = useSelector<BookState>((state) => state.books);
+    // const books:any = useSelector<BookState>((state) => state.books);
+    
+    const books =[{title:'Padma Book', isbn:'123', author:{name:'Padma'}}]
 
 
     const renderBooks =books.map((book: IBook, index: number) =>
