@@ -37,32 +37,28 @@ const CreateAuthor: React.FC<CreateAuthorProps> = (props) => {
 
     return (
         <React.Fragment>
-            <Form noValidate validated={validated} className="form-div" onSubmit={handleOnSubmit}>
-                <Row>
-                    <Col className="pl-0 pb-3 pt-4">
-                        <span className="float-left">Create Author</span>
-                        <i className='feather icon-x-circle text-dark float-right' onClick={closeVisible}/>
+            <div className="form-area mt-2 mb-5 pb-2 pt-5">
+                <Form.Row>
+                    <Col xs sm={10} className="text-left pl-1 mb-3">
+                        <span>Create Author</span>
                     </Col>
-                </Row>
-                <Row className="pl-2 pl-sm-4 mb-4">
-                    <Col sm={12} xs={12}>
-                        <Form.Label className="float-left text-field-label">Name of Author</Form.Label>
+                    <Col xs sm={2} className="text-right pr-2">
+                        <i className='feather icon-x-circle text-dark text-right' onClick={closeVisible}/>
                     </Col>
-                    <Col sm={12} xs={12}>
-                        <Form.Control required type="text" className="form-input" onChange={onChangeAuthorField}/>
-                    </Col>
-                    <Col sm={12} xs={12}>
-                        <Form.Control.Feedback type="invalid">Author name can not be empty!</Form.Control.Feedback>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <Button type="submit" variant='primary' className='float-right form-button'>Create
-                        </Button>
-                    </Col>
-                </Row>
+                </Form.Row>
 
-            </Form>
+                <Form noValidate validated={validated} className="form-div pl-4" onSubmit={handleOnSubmit}>
+                    <Form.Row>
+                        <Form.Group className="col-12" controlId="authorSelectID">
+                            <Form.Label className="float-left label-text">Name of Author</Form.Label>
+                            <Form.Control required type="text" className="form-input" onChange={onChangeAuthorField}/>
+                            <Form.Control.Feedback type="invalid">Author name can not be empty!</Form.Control.Feedback>
+                        </Form.Group>
+                    </Form.Row>
+                    <Button type="submit" size='sm' variant='primary' className='float-right create-button'>Create
+                    </Button>
+                </Form>
+            </div>
         </React.Fragment>
     );
 }

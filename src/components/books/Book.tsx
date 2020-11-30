@@ -23,7 +23,7 @@ const Book: React.FC<bookProps> = (props) => {
                     <Col xs={10} className="pl-0">
                         <label className='mb-2 float-left text-left'>{num}.{book.title}</label>
                     </Col>
-                    <Col xs={2} className='text-right book-controls pr-3'>
+                    <Col xs={2} className='text-right book-controls pr-3 mt-2'>
                         <i className='feather icon-edit mr-3' onClick={()=>props.handleEdit(num-1)}/>
                         <i className='feather icon-trash-2' onClick={()=>deleteBookDispatch(num-1)}/>
                     </Col>

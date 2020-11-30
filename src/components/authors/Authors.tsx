@@ -1,8 +1,8 @@
 import React, {useState} from "react";
-import CreateAuthor from "./authors/CreateAuthor";
-import UpdateAuthor from "./authors/UpdateAuthor";
-import AuthorsList from "./authors/AuthorList";
-import AddAuthor from "./authors/AddAuthor";
+import CreateAuthor from "./CreateAuthor";
+import UpdateAuthor from "./UpdateAuthor";
+import AuthorsList from "./AuthorList";
+import AddAuthor from "./AddAuthor";
 import {Col, Container, Row} from "react-bootstrap";
 
 
@@ -24,7 +24,7 @@ const Authors: React.FC = () => {
     const disableUpdate = (val: boolean) => setIsUpdatable(val);
 
     return (
-        <Container className="authors">
+        <div className="author p-2 pl-sm-3 pr-sm-3 pl-md-4 pr-md-4 pl-lg-5 pr-lg-5">
             <Row>
                 <Col className="text-left pl-0 py-1 mb-4 authors-title">Authors</Col>
             </Row>
@@ -37,12 +37,12 @@ const Authors: React.FC = () => {
                 <Col><AddAuthor setIsVisible={changeCreatable}/></Col>
             </Row>
             <Row>
-                <Col xs={12} sm={12} md={9}>
+                <Col xs={12} sm={12} md={9} className="p-0 pr-md-4">
                     {isUpdatable && <UpdateAuthor keyIndex={updatableIndex} isUpdatable={disableUpdate}/>}
                     {isVisible && <CreateAuthor setIsVisible={setIsVisible}/>}
                 </Col>
             </Row>
-        </Container>
+        </div>
     );
 }
 export default Authors;

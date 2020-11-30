@@ -28,7 +28,7 @@ const Author:React.FC<AuthorProps>=(props)=>{
                 <Col xs={10} className="pl-0">
                    <label className='mb-2 float-left text-left'>{num}.{author.name}</label>
                 </Col>
-                <Col xs={2} className='text-right author-controls pr-3'>
+                <Col xs={2} className='text-right author-controls pr-3 mt-2'>
                     <i className='feather icon-edit mr-3' onClick={handleEditClick}/>
                     <i className='feather icon-trash-2' onClick={handleDelete}/>
                 </Col>
