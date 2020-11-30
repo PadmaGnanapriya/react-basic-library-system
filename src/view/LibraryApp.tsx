@@ -17,9 +17,9 @@ const LibraryApp:React.FC = () => {
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="mr-auto">
-                                <Link to="/" className="router-link-created">Home</Link>
-                                <Link to="/library" className="router-link-created">Library</Link>
-                                <Link to="/about" className="router-link-created">About</Link>
+                                <Link to="/" className="router-link-created ml-3">Home</Link>
+                                <Link to="/library" className="router-link-created ml-3">Library</Link>
+                                <Link to="/about" className="router-link-created ml-3">About</Link>
                             </Nav>
                         </Navbar.Collapse>
                     </Navbar>

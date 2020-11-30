@@ -49,7 +49,7 @@ const UpdateAuthor: React.FC<UpdateAuthorProps> = (props) => {
 
     return (
         <React.Fragment>
-            <div className="update-author mt-2 mb-5 pb-2 pt-5">
+            <div className="form-area mt-2 mb-5 pb-2 pt-5">
                 <Form.Row>
                     <Col className="text-left pl-1 mb-3">
                         <span>Update Author</span>
@@ -59,10 +59,10 @@ const UpdateAuthor: React.FC<UpdateAuthorProps> = (props) => {
                     </Col>
                 </Form.Row>
 
-                <Form noValidate validated={validated} className="pl-5" onSubmit={handleOnSubmit}>
+                <Form noValidate validated={validated} className="pl-4" onSubmit={handleOnSubmit}>
                     <Form.Row>
-                        <Form.Group controlId="authorSelectID" className="form-group-dev">
-                            <Form.Label className="text-left label-text">Name of Author</Form.Label>
+                        <Form.Group  className="col-12"  controlId="authorSelectID">
+                            <Form.Label className="float-left label-text">Name of Author</Form.Label>
                             <Form.Control required type="text" className="form-input" onChange={onChangeAuthorField}
                                           placeholder="" value={authorName ? authorName : ''}/>
                             <Form.Control.Feedback type="invalid">Author name can not be empty!</Form.Control.Feedback>

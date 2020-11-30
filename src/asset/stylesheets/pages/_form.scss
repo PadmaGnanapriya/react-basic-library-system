@@ -1,0 +1,52 @@
+@import "common";
+
+.form-area {
+  span {
+    color: $green-color;
+    font-size: $green-title-font-size;
+    font-weight: $green-title-font-weight;
+    border-bottom: 3px solid $green-color;
+  }
+
+  .icon-x-circle {
+    font-size: $icon-font-size;
+    cursor: pointer;
+  }
+
+  .form-div {
+    width: 100%;
+    font-size: 1em;
+
+    .label-text {
+      font-size: $box-title-text-font-size;
+    }
+
+    .form-input {
+      font-size: 1em;
+      border: 0.13em solid $boarder-line-color;
+      height: 1.9em;
+      border-radius: 0;
+    }
+
+    .create-button {
+      float: right;
+      padding: 0.1em 1.1em;
+      border-radius: 6px;
+      min-width: 90px;
+      font-size: 1em;
+      background-color: $blue-color;
+    }
+
+    .update-button {
+      float: right;
+      padding: 0.1em 1.1em;
+      border-radius: 6px;
+      min-width: 90px;
+      font-size: 1em;
+      background-color: $green-color;
+      border-color: $green-color;
+    }
+  }
+
+}
+

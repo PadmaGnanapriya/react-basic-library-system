@@ -1,14 +1,12 @@
 @import "common";
-.authors-dev{
-  margin:0;
-  padding: 0;
+
+.authors,.books{
+  font-size: 1em;
 }
 
-.authors-title{
+.authors-title, .books-title{
   font-weight: 500;
-  font-size: 2.05em;
+  font-size: 2.15em;
   border-bottom:2px solid $text-color;
-  float:left;
-  width: 100%;
   color: $text-color;
 }
