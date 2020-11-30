@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import BookList from "./books/BookList";
 import AddBook from "./books/AddBook";
 import CreateBook from "./books/CreateBook";
-import {Container} from "react-bootstrap";
+import {Col, Container, Row} from "react-bootstrap";
 import UpdateBook from "./books/UpdateBook";
 
 const Books: React.FC = () => {
@@ -26,16 +26,26 @@ const Books: React.FC = () => {
 
     return(
         <React.Fragment>
-            <Container className="books m-1 p-0 mt-0 pt-0 pl-1 pr-3" fluid>
-                <span className="text-left ml-1 pb-1 mb-4 books-title">Books</span>
-                <BookList handleEdit = {handleEdit}/>
-                {
-                    !isVisible && <AddBook changeVisibility={changeCreatable}/>
-                }{
-                    isVisible && <CreateBook changeVisibility = {setIsVisible}/>
-                }{
-                    isEditable && <UpdateBook changeVisibility = {hideUpdateForm} keyIndex = {updateBookIndex}/>
-                }
+            <Container className="books">
+                <Row>
+                    <Col className="text-left pl-0 py-1 mb-4 books-title">Books</Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <BookList handleEdit = {handleEdit}/>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <AddBook changeVisibility={changeCreatable}/>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col xs={12} sm={12} md={9}>
+                        {isVisible && <CreateBook changeVisibility = {setIsVisible}/>}{
+                        isEditable && <UpdateBook changeVisibility = {hideUpdateForm} keyIndex = {updateBookIndex}/>}
+                    </Col>
+                </Row>
             </Container>
         </React.Fragment>
     );

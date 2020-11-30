@@ -1,6 +1,6 @@
 @import "common";
 
-.author-item{
+.author-item, .book-item{
   label{
     color: $text-color;
     font-size: $list-data-font-size;
@@ -18,7 +18,7 @@
   }
   &:hover{
     background-color: $hover-color;
-    .author-controls{
+    .author-controls, .book-controls{
       i{
         visibility:visible ;
       }

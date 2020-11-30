@@ -34,7 +34,7 @@ const Authors: React.FC = () => {
                 </Col>
             </Row>
             <Row>
-                <Col>{!isVisible && <AddAuthor setIsVisible={changeCreatable}/>}</Col>
+                <Col><AddAuthor setIsVisible={changeCreatable}/></Col>
             </Row>
             <Row>
                 <Col xs={12} sm={12} md={9}>
