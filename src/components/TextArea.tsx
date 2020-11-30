@@ -1,21 +1,21 @@
 import React from "react";
 import {Col, Row} from "react-bootstrap";
-import Authors from "./Authors";
-import Books from "./Books";
+import Authors from "./authors/Authors";
+import Books from "./books/Books";
 
 const TextArea: React.FC = () => {
 
     return (
-        <React.Fragment>
-            <Row>
-                <Col className="ml-4 mr-4 p-0 pl-3">
+        <div className="text-area">
+            <Row className="m-0">
+                <Col xs={12} sm={6}>
                     <Books/>
                 </Col>
-                <Col className="ml-4 mr-5 p-0 pl-4">
+                <Col xs={12} sm={6}>
                     <Authors/>
                 </Col>
             </Row>
-        </React.Fragment>
+        </div>
     );
 }
 export default TextArea;

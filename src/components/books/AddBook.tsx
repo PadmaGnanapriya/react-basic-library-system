@@ -8,18 +8,14 @@ type addBookProps = {
 
 const AddBook: React.FC<addBookProps> = (props) => {
 
-    const onClickAction = () => {
-        props.changeVisibility(true);
-    }
+    const onClickAction = () => props.changeVisibility(true);
 
-    return(
+    return (
         <React.Fragment>
-            <Container>
-                <Row className="add-book mt-3 mb-4" >
-                    <i className='feather icon-plus' onClick={onClickAction}></i>
-                    <span onClick={onClickAction}>Add Book</span>
-                </Row>
-            </Container>
+            <Row className="add-book mt-3 mb-4">
+                <i className='feather icon-plus' onClick={onClickAction}/>
+                <span onClick={onClickAction}>Add Book</span>
+            </Row>
         </React.Fragment>
     );
 };

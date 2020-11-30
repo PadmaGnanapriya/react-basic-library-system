@@ -11,7 +11,9 @@ type AuthorsListProps = {
 }
 
 const AuthorsList: React.FC<AuthorsListProps> = (props) => {
-    const authors:any = useSelector<AuthorState>((state: { authors: IAuthor[]; }) => state.authors);
+    // const authors:any = useSelector<AuthorState>((state: { authors: IAuthor[]; }) => state.authors);
+
+    const authors =[{name: 'Padma Gnanapriya'}, {name: 'Ovindu Archana'}, {name: 'Isuru Anjana'}]
 
     const renderAuthors = () => {
         return (

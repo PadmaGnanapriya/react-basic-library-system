@@ -1,6 +1,7 @@
 import React from "react";
 import {Container, Row, Col, Image} from "react-bootstrap";
-import bannerImage from "../asset/images/banner-image.jpg"
+import bannerImage from "../asset/images/banner-image.jpg";
+import bannerImage2 from "../asset/images/banner-image2.jpg";
 
 /**
  * This make library image and title
@@ -16,7 +17,8 @@ const Welcome: React.FC = () => {
                         <h1 className="title py-1">My Library</h1>
                     </Col>
                     <Col xs={12} className="pl-0 pr-0">
-                        <Image src={bannerImage} className="banner-image"/>
+                        <Image src={bannerImage} className="banner-image d-none d-sm-block"/>
+                        <Image src={bannerImage2} className="banner-image d-sm-none"/>
                         <figcaption className="pr-4 float-right">
                             <span>Photo by <a href="https://unsplash.com/@annahunko?utm_source=unsplash&amp;
                             utm_medium=referral&amp;utm_content=creditCopyText">Anna Hunko</a> on
