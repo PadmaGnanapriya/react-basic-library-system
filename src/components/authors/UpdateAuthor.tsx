@@ -1,9 +1,8 @@
 import React, {FormEvent, useEffect, useState} from "react";
-import {IAuthor, UpdatableAuthor} from "../types/LibraryTypes";
 import {Col, Button, Form} from "react-bootstrap"
 import {useDispatch, useSelector} from "react-redux";
 import {updateAuthor} from "../../store/actions/AuthorActions";
-import {AuthorState} from "../../store/reducers/AuthorReducer";
+import {RootState} from "../../store/Store";
 
 type UpdateAuthorProps = {
     keyIndex: number;
@@ -13,12 +12,9 @@ type UpdateAuthorProps = {
 const UpdateAuthor: React.FC<UpdateAuthorProps> = (props) => {
     const {keyIndex} = props;
     const [validated, setValidated] = useState(false);
-    const authors: any = useSelector<AuthorState>((state: { authors: IAuthor[]; }) => state.authors);
+    const {authors} = useSelector((state:RootState)=> state.author)
     const [authorName, setAuthorName] = useState<string>(authors[keyIndex].name);
     const dispatch = useDispatch();
-    const updateAuthorDispatch = (authorData: UpdatableAuthor) => {
-        dispatch(updateAuthor(authorData));
-    };
 
     useEffect(() => {
         setAuthorName(authors[keyIndex].name);
@@ -28,7 +24,7 @@ const UpdateAuthor: React.FC<UpdateAuthorProps> = (props) => {
         event.preventDefault();
         event.stopPropagation();
         if (authorName !== '') {
-            updateAuthorDispatch({author: {name: authorName}, index: keyIndex});
+            dispatch(updateAuthor({author: {name: authorName}, index: keyIndex}));
             setValidated(false);
             Array.from(document.querySelectorAll("input")).forEach(
                 input => (input.value = "")

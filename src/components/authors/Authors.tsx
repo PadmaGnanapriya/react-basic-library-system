@@ -3,7 +3,7 @@ import CreateAuthor from "./CreateAuthor";
 import UpdateAuthor from "./UpdateAuthor";
 import AuthorsList from "./AuthorList";
 import AddAuthor from "./AddAuthor";
-import {Col, Container, Row} from "react-bootstrap";
+import {Col, Row} from "react-bootstrap";
 
 
 const Authors: React.FC = () => {

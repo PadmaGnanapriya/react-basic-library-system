@@ -4,8 +4,8 @@ import {IAuthor, IBook} from "../types/LibraryTypes";
 import Select, {ValueType} from 'react-select';
 import {ReactSelectOption} from "../types/LibraryTypes";
 import {useDispatch, useSelector} from "react-redux";
-import {AuthorState} from "../../store/reducers/AuthorReducer";
 import {addBook} from "../../store/actions/BookActions";
+import {RootState} from "../../store/Store";
 
 
 type CreateBookProps = {
@@ -23,7 +23,7 @@ const CreateBook: React.FC<CreateBookProps> = (props) => {
     const addBookDispatch = (book: IBook) => {
         dispatch(addBook(book));
     };
-    const authors: any = useSelector<AuthorState>((state) => state.authors);
+    const {authors} = useSelector((state:RootState)=> state.author)
 
     useEffect(() => {
         const options: ReactSelectOption[] = authors ? authors.map((author: IAuthor, index: number) => {

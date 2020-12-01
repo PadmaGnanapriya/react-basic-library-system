@@ -21,6 +21,7 @@ const AuthorReducer = (
             return state
 
         case DELETE_AUTHOR:
+            console.log("DELETE author"+ action.payload)
             const allAuthor: IAuthor[] = state.authors.slice();
             allAuthor.splice(action.payload, 1);
             state.authors = allAuthor

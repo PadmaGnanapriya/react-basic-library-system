@@ -1,5 +1,5 @@
 import React from "react";
-import {Row, Col, Container} from "react-bootstrap";
+import {Row, Col} from "react-bootstrap";
 import {IAuthor} from "../types/LibraryTypes";
 import {deleteAuthor} from "../../store/actions/AuthorActions";
 import {useDispatch} from "react-redux";
@@ -15,8 +15,8 @@ type AuthorProps = {
 const Author:React.FC<AuthorProps>=(props)=>{
     const {num, author}=props;
     const dispatch = useDispatch();
-    const deleteAuthorDispatch = (index:number) => dispatch(deleteAuthor(index));
-    const handleDelete =() => deleteAuthorDispatch(num-1)
+    // const deleteAuthorDispatch = (index:number) => dispatch(deleteAuthor(index));
+    const handleDelete =() => dispatch(deleteAuthor(num-1));
     const handleEditClick= () => {
         props.setIsUpdatable(true);
         props.setUpdatableIndex(num-1);

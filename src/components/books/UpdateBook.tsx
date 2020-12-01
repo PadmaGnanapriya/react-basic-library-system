@@ -1,12 +1,11 @@
 import React, {FormEvent, useEffect, useState} from "react";
 import {Col, Button, Form} from "react-bootstrap"
-import {IAuthor, IBook, UpdatableBook} from "../types/LibraryTypes";
+import {IAuthor,UpdatableBook} from "../types/LibraryTypes";
 import Select, {ValueType} from 'react-select';
 import {ReactSelectOption} from "../types/LibraryTypes";
 import {updateBook} from "../../store/actions/BookActions";
 import {useDispatch, useSelector} from "react-redux";
-import {AuthorState} from "../../store/reducers/AuthorReducer";
-import {BookState} from "../../store/reducers/BookReducer";
+import {RootState} from "../../store/Store";
 
 
 type UpdateBookProps = {
@@ -16,8 +15,8 @@ type UpdateBookProps = {
 
 const UpdateBook: React.FC<UpdateBookProps> = (props) => {
     const {keyIndex} = props;
-    const authors: any = useSelector<AuthorState>((state: { authors: IAuthor[]; }) => state.authors);
-    const books: any = useSelector<BookState>((state: { books: IBook[]; }) => state.books);
+    const {authors} = useSelector((state:RootState)=> state.author)
+    const {books} = useSelector((state:RootState)=> state.book)
     const [authorOptions, setAuthorOptions] = useState<ReactSelectOption[]>([]);
     const [selectedAuthor, setSelectedAuthor] = useState<ValueType<ReactSelectOption>>
     ({value: '1', label: books[keyIndex].author.name});

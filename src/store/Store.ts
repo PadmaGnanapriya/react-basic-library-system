@@ -9,11 +9,18 @@ export const rootReducer = combineReducers({
     book: BookReducer
 });
 
-export type AppState = ReturnType<typeof rootReducer>;
+const store = createStore(rootReducer);
 
-export const Store =
-    createStore(rootReducer, applyMiddleware(thunk as ThunkMiddleware<AppState, AuthorActions, BookActions>));
+export type RootState = ReturnType<typeof rootReducer>;
 
+export default store;
+
+
+// export type RootState = ReturnType<typeof rootReducer>;
+//
+// export const Store =
+//     createStore(rootReducer, applyMiddleware(thunk as ThunkMiddleware<AppState, AuthorActions, BookActions>));
+//
 
 
 // import { createStore} from "redux";
