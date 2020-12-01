@@ -5,7 +5,11 @@ type addBookProps = {
     changeVisibility: (val: boolean) => void;
 }
 
-
+/**
+ * Add book clickable text creates
+ * @param props
+ * @constructor
+ */
 const AddBook: React.FC<addBookProps> = (props) => {
 
     const onClickAction = () => props.changeVisibility(true);

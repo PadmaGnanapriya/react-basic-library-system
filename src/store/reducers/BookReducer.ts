@@ -15,7 +15,7 @@ const BookReducer = (
 ) => {
     switch (action.type) {
         case ADD_BOOK:
-            return {...state, authors: [...state.books, action.payload]}
+            return {...state, books: [...state.books, action.payload]}
 
         case SHOW_BOOK_LIST:
             return state

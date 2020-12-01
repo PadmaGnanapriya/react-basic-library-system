@@ -1,12 +1,11 @@
 import React, {FormEvent, useEffect, useState} from "react";
 import {Col, Button, Form} from "react-bootstrap"
-import {IAuthor, IBook, UpdatableBook} from "../types/LibraryTypes";
+import {IAuthor, UpdatableBook} from "../types/LibraryTypes";
 import Select, {ValueType} from 'react-select';
 import {ReactSelectOption} from "../types/LibraryTypes";
 import {updateBook} from "../../store/actions/BookActions";
 import {useDispatch, useSelector} from "react-redux";
-import {AuthorState} from "../../store/reducers/AuthorReducer";
-import {BookState} from "../../store/reducers/BookReducer";
+import {RootState} from "../../store/Store";
 
 
 type UpdateBookProps = {
@@ -14,16 +13,23 @@ type UpdateBookProps = {
     changeVisibility: () => void;
 }
 
+/**
+ * Create update-book react bootstrap form.
+ * @param props
+ * @constructor
+ */
 const UpdateBook: React.FC<UpdateBookProps> = (props) => {
     const {keyIndex} = props;
-    const authors: any = useSelector<AuthorState>((state: { authors: IAuthor[]; }) => state.authors);
-    const books: any = useSelector<BookState>((state: { books: IBook[]; }) => state.books);
+    const {authors} = useSelector((state: RootState) => state.author)
+    const {books} = useSelector((state: RootState) => state.book)
     const [authorOptions, setAuthorOptions] = useState<ReactSelectOption[]>([]);
     const [selectedAuthor, setSelectedAuthor] = useState<ValueType<ReactSelectOption>>
     ({value: '1', label: books[keyIndex].author.name});
     const [title, setTitle] = useState<string>(books[keyIndex].title);
     const [isbn, setISBN] = useState<string>(books[keyIndex].isbn);
     const [author, setAuthor] = useState<IAuthor>(books[keyIndex].author);
+    const [validated, setValidated] = useState(false);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         setTitle(books[keyIndex].title);
@@ -41,19 +47,13 @@ const UpdateBook: React.FC<UpdateBookProps> = (props) => {
         setAuthorOptions(options)
     }, [authors]);
 
-    const dispatch = useDispatch();
-    const updateBookDispatch = (authorData: UpdatableBook) => {
-        dispatch(updateBook(authorData));
-    };
-
-
-    const [validated, setValidated] = useState(false);
     const handleUpdate = (event: FormEvent) => {
         event.preventDefault();
         event.stopPropagation();
         if (title !== null && isbn !== null && title !== '' && isbn !== '') {
-            updateBookDispatch({book: {title: title, isbn: isbn, author: author}, index: keyIndex});
+            dispatch(updateBook({book: {title: title, isbn: isbn, author: author}, index: keyIndex}));
             setValidated(false);
+            props.changeVisibility();
         } else {
             setValidated(true);
         }
@@ -124,7 +124,7 @@ const UpdateBook: React.FC<UpdateBookProps> = (props) => {
                 </Form.Row>
                 <Form.Row>
                     <Form.Label className="float-left label-text">Author</Form.Label>
-                    <Form.Group controlId="authorSelectID"  className="col-12" >
+                    <Form.Group controlId="authorSelectID" className="col-12">
                         <Select
                             styles={customSelectStyles}
                             value={selectedAuthor}

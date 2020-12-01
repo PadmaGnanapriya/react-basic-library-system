@@ -1,6 +1,6 @@
 import React, {FormEvent, useState} from "react";
 import {IAuthor} from "../types/LibraryTypes";
-import {Col, Row, Button, Form} from "react-bootstrap"
+import {Col, Button, Form} from "react-bootstrap"
 import {addAuthor} from "../../store/actions/AuthorActions";
 import {useDispatch} from "react-redux";
 
@@ -8,6 +8,11 @@ type CreateAuthorProps = {
     setIsVisible: (val: boolean) => void;
 }
 
+/**
+ * Create  create-author react bootstrap form.
+ * @param props
+ * @constructor
+ */
 const CreateAuthor: React.FC<CreateAuthorProps> = (props) => {
     const [validated, setValidated] = useState(false);
     const [author, setAuthor] = useState<string>('');
@@ -21,9 +26,7 @@ const CreateAuthor: React.FC<CreateAuthorProps> = (props) => {
         if (author !== '') {
             addAuthorDispatch({name: author});
             setValidated(false);
-            Array.from(document.querySelectorAll("input")).forEach(
-                input => (input.value = "")
-            );
+            Array.from(document.querySelectorAll("input")).forEach(input => (input.value = ""));
             setAuthor('');
         } else {
             setValidated(true);
@@ -37,7 +40,7 @@ const CreateAuthor: React.FC<CreateAuthorProps> = (props) => {
 
     return (
         <React.Fragment>
-            <div className="form-area mt-2 mb-5 pb-2 pt-5">
+            <div className="form-area mb-5 pb-2 pt-5">
                 <Form.Row>
                     <Col xs sm={10} className="text-left pl-1 mb-3">
                         <span>Create Author</span>

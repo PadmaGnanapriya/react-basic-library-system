@@ -3,9 +3,12 @@ import CreateAuthor from "./CreateAuthor";
 import UpdateAuthor from "./UpdateAuthor";
 import AuthorsList from "./AuthorList";
 import AddAuthor from "./AddAuthor";
-import {Col, Container, Row} from "react-bootstrap";
+import {Col, Row} from "react-bootstrap";
 
-
+/**
+ * render authors section in text area.
+ * @constructor
+ */
 const Authors: React.FC = () => {
     const [isUpdatable, setIsUpdatable] = useState<boolean>(false);
     const [updatableIndex, setUpdatableIndex] = useState<number>(0);

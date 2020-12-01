@@ -2,9 +2,13 @@ import React, {useState} from "react";
 import BookList from "./BookList";
 import AddBook from "./AddBook";
 import CreateBook from "./CreateBook";
-import {Col, Container, Row} from "react-bootstrap";
+import {Col, Row} from "react-bootstrap";
 import UpdateBook from "./UpdateBook";
 
+/**
+ * render books section in text area
+ * @constructor
+ */
 const Books: React.FC = () => {
     const [isVisible, setIsVisible] = useState(false);
     const [isEditable, setIsEditable] = useState(false);
@@ -22,7 +26,6 @@ const Books: React.FC = () => {
     };
 
     const hideUpdateForm = () => setIsEditable(false);
-
 
     return(
         <React.Fragment>

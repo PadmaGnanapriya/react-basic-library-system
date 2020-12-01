@@ -1,8 +1,8 @@
 import React from "react";
 import Author from "./Author";
 import {IAuthor} from "../types/LibraryTypes";
-import {AuthorState} from "../../store/reducers/AuthorReducer";
 import {useSelector} from "react-redux";
+import {RootState} from "../../store/Store";
 
 
 type AuthorsListProps = {
@@ -10,10 +10,13 @@ type AuthorsListProps = {
     setUpdatableIndex: (num: number) => void;
 }
 
+/**
+ * Make author components according to state.author
+ * @param props
+ * @constructor
+ */
 const AuthorsList: React.FC<AuthorsListProps> = (props) => {
-    // const authors:any = useSelector<AuthorState>((state: { authors: IAuthor[]; }) => state.authors);
-
-    const authors =[{name: 'Padma Gnanapriya'}, {name: 'Ovindu Archana'}, {name: 'Isuru Anjana'}]
+    const {authors} = useSelector((state: RootState) => state.author)
 
     const renderAuthors = () => {
         return (

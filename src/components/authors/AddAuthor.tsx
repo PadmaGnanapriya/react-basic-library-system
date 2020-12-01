@@ -1,10 +1,14 @@
 import React from "react";
-import {Container, Row} from "react-bootstrap";
+import {Row} from "react-bootstrap";
 
 type AddAuthorProps = {
     setIsVisible: (val: boolean) => void;
 }
-
+/**
+ * Add author clickable unit render.
+ * @param props
+ * @constructor
+ */
 const AddAuthor: React.FC<AddAuthorProps> = (props) => {
 
     const onClickAction = () => props.setIsVisible(true);

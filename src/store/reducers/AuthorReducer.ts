@@ -1,5 +1,11 @@
 import {IAuthor} from "../../components/types/LibraryTypes";
-import {ADD_AUTHOR, AuthorActions, DELETE_AUTHOR, SHOW_AUTHOR_LIST, UPDATE_AUTHOR} from "../../components/types/Actions";
+import {
+    ADD_AUTHOR,
+    AuthorActions,
+    DELETE_AUTHOR,
+    SHOW_AUTHOR_LIST,
+    UPDATE_AUTHOR
+} from "../../components/types/Actions";
 
 export interface AuthorState {
     authors: IAuthor[]
