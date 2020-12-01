@@ -12,18 +12,19 @@ type CreateBookProps = {
     changeVisibility: (val: boolean) => void;
 }
 
+/**
+ * Create create-book react bootstrap form.
+ * @param props
+ * @constructor
+ */
 const CreateBook: React.FC<CreateBookProps> = (props) => {
     const [authorOptions, setAuthorOptions] = useState<ReactSelectOption[]>([]);
     const [selectedAuthor, setSelectedAuthor] = useState<ValueType<ReactSelectOption> | null>(null);
     const [title, setTitle] = useState<string | null>(null);
     const [isbn, setISBN] = useState<string | null>(null);
     const [author, setAuthor] = useState<IAuthor | null>(null);
-
     const dispatch = useDispatch();
-    const addBookDispatch = (book: IBook) => {
-        dispatch(addBook(book));
-    };
-    const {authors} = useSelector((state:RootState)=> state.author)
+    const {authors} = useSelector((state: RootState) => state.author)
 
     useEffect(() => {
         const options: ReactSelectOption[] = authors ? authors.map((author: IAuthor, index: number) => {
@@ -40,7 +41,12 @@ const CreateBook: React.FC<CreateBookProps> = (props) => {
         event.preventDefault();
         event.stopPropagation();
         if (title !== null && isbn !== null && title !== '' && isbn !== '' && author !== null) {
-            addBookDispatch({title: title, isbn: isbn, author: author});
+            dispatch(addBook({title: title, isbn: isbn, author: author}));
+            setTitle(null);
+            setISBN(null);
+            setAuthor(null);
+            setSelectedAuthor(null);
+            Array.from(document.querySelectorAll("input")).forEach(input => (input.value = ""));
             setBorderColor('#989898');
             setValidated(false);
         } else {

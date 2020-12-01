@@ -10,8 +10,13 @@ type AuthorsListProps = {
     setUpdatableIndex: (num: number) => void;
 }
 
+/**
+ * Make author components according to state.author
+ * @param props
+ * @constructor
+ */
 const AuthorsList: React.FC<AuthorsListProps> = (props) => {
-    const {authors} = useSelector((state:RootState)=> state.author)
+    const {authors} = useSelector((state: RootState) => state.author)
 
     const renderAuthors = () => {
         return (

@@ -1,6 +1,6 @@
 import React, {FormEvent, useEffect, useState} from "react";
 import {Col, Button, Form} from "react-bootstrap"
-import {IAuthor,UpdatableBook} from "../types/LibraryTypes";
+import {IAuthor, UpdatableBook} from "../types/LibraryTypes";
 import Select, {ValueType} from 'react-select';
 import {ReactSelectOption} from "../types/LibraryTypes";
 import {updateBook} from "../../store/actions/BookActions";
@@ -13,10 +13,15 @@ type UpdateBookProps = {
     changeVisibility: () => void;
 }
 
+/**
+ * Create update-book react bootstrap form.
+ * @param props
+ * @constructor
+ */
 const UpdateBook: React.FC<UpdateBookProps> = (props) => {
     const {keyIndex} = props;
-    const {authors} = useSelector((state:RootState)=> state.author)
-    const {books} = useSelector((state:RootState)=> state.book)
+    const {authors} = useSelector((state: RootState) => state.author)
+    const {books} = useSelector((state: RootState) => state.book)
     const [authorOptions, setAuthorOptions] = useState<ReactSelectOption[]>([]);
     const [selectedAuthor, setSelectedAuthor] = useState<ValueType<ReactSelectOption>>
     ({value: '1', label: books[keyIndex].author.name});
@@ -119,7 +124,7 @@ const UpdateBook: React.FC<UpdateBookProps> = (props) => {
                 </Form.Row>
                 <Form.Row>
                     <Form.Label className="float-left label-text">Author</Form.Label>
-                    <Form.Group controlId="authorSelectID"  className="col-12" >
+                    <Form.Group controlId="authorSelectID" className="col-12">
                         <Select
                             styles={customSelectStyles}
                             value={selectedAuthor}

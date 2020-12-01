@@ -9,10 +9,15 @@ type UpdateAuthorProps = {
     isUpdatable: (val: boolean) => void;
 }
 
+/**
+ * Create update-author react boostrap form
+ * @param props
+ * @constructor
+ */
 const UpdateAuthor: React.FC<UpdateAuthorProps> = (props) => {
     const {keyIndex} = props;
     const [validated, setValidated] = useState(false);
-    const {authors} = useSelector((state:RootState)=> state.author)
+    const {authors} = useSelector((state: RootState) => state.author)
     const [authorName, setAuthorName] = useState<string>(authors[keyIndex].name);
     const dispatch = useDispatch();
 
@@ -55,9 +60,9 @@ const UpdateAuthor: React.FC<UpdateAuthorProps> = (props) => {
                     </Col>
                 </Form.Row>
 
-                <Form noValidate validated={validated} className="pl-4" onSubmit={handleOnSubmit}>
+                <Form noValidate validated={validated} className="form-div pl-4" onSubmit={handleOnSubmit}>
                     <Form.Row>
-                        <Form.Group  className="col-12"  controlId="authorSelectID">
+                        <Form.Group className="col-12" controlId="authorSelectID">
                             <Form.Label className="float-left label-text">Name of Author</Form.Label>
                             <Form.Control required type="text" className="form-input" onChange={onChangeAuthorField}
                                           placeholder="" value={authorName ? authorName : ''}/>

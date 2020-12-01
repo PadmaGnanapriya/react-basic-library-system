@@ -1,5 +1,11 @@
 import {IAuthor} from "../../components/types/LibraryTypes";
-import {ADD_AUTHOR, AuthorActions, DELETE_AUTHOR, SHOW_AUTHOR_LIST, UPDATE_AUTHOR} from "../../components/types/Actions";
+import {
+    ADD_AUTHOR,
+    AuthorActions,
+    DELETE_AUTHOR,
+    SHOW_AUTHOR_LIST,
+    UPDATE_AUTHOR
+} from "../../components/types/Actions";
 
 export interface AuthorState {
     authors: IAuthor[]
@@ -21,7 +27,6 @@ const AuthorReducer = (
             return state
 
         case DELETE_AUTHOR:
-            console.log("DELETE author"+ action.payload)
             const allAuthor: IAuthor[] = state.authors.slice();
             allAuthor.splice(action.payload, 1);
             state.authors = allAuthor

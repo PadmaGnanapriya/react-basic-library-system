@@ -11,6 +11,11 @@ type bookProps = {
     handleEdit: (key: number) => void
 }
 
+/**
+ * create single book component.
+ * @param props
+ * @constructor
+ */
 const Book: React.FC<bookProps> = (props) => {
     const {num, book} = props;
 

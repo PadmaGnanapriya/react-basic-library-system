@@ -15,7 +15,6 @@ const BookReducer = (
 ) => {
     switch (action.type) {
         case ADD_BOOK:
-            console.log("ADD book run"+ action.payload)
             return {...state, books: [...state.books, action.payload]}
 
         case SHOW_BOOK_LIST:
@@ -28,7 +27,6 @@ const BookReducer = (
             return state
 
         case UPDATE_BOOK:
-            console.log("Upadte book")
             const allBooks: IBook[] = state.books.slice();
             allBooks.splice(action.payload.index, 1, action.payload.book);
             state.books = allBooks;
