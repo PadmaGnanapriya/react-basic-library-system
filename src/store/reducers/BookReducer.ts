@@ -28,11 +28,10 @@ const BookReducer = (
             return state
 
         case UPDATE_BOOK:
-            console.log("Updated  "+action.payload.index+"__"+ action.payload.book)
+            console.log("Upadte book")
             const allBooks: IBook[] = state.books.slice();
             allBooks.splice(action.payload.index, 1, action.payload.book);
             state.books = allBooks;
-            console.log(allBooks)
             return state
 
         default:

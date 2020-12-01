@@ -23,6 +23,8 @@ const UpdateBook: React.FC<UpdateBookProps> = (props) => {
     const [title, setTitle] = useState<string>(books[keyIndex].title);
     const [isbn, setISBN] = useState<string>(books[keyIndex].isbn);
     const [author, setAuthor] = useState<IAuthor>(books[keyIndex].author);
+    const [validated, setValidated] = useState(false);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         setTitle(books[keyIndex].title);
@@ -40,19 +42,13 @@ const UpdateBook: React.FC<UpdateBookProps> = (props) => {
         setAuthorOptions(options)
     }, [authors]);
 
-    const dispatch = useDispatch();
-    const updateBookDispatch = (authorData: UpdatableBook) => {
-        dispatch(updateBook(authorData));
-    };
-
-
-    const [validated, setValidated] = useState(false);
     const handleUpdate = (event: FormEvent) => {
         event.preventDefault();
         event.stopPropagation();
         if (title !== null && isbn !== null && title !== '' && isbn !== '') {
-            updateBookDispatch({book: {title: title, isbn: isbn, author: author}, index: keyIndex});
+            dispatch(updateBook({book: {title: title, isbn: isbn, author: author}, index: keyIndex}));
             setValidated(false);
+            props.changeVisibility();
         } else {
             setValidated(true);
         }
